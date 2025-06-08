@@ -1,0 +1,53 @@
+---
+title: "Report of twin transition in SMEs across Europe: analysis from Eurobarometer data"
+author: "Giulia Picardi"
+date: "2025-06-08"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+INTRODUCTION 
+
+RQ: "what structural and strategic facrors are correlated with the adoption of green and digital practices among Europe?"
+
+
+
+METHODS
+
+Data source: Flash Eurobarometer 486 (2020) on digitalizazion, Flash Eurobarometer 498 (2021) on sustainability.
+
+
+sample: SMEs across EU countries (~12.000 per survey).
+analysis: two logistic regression models (one for digital and one for green adoption) using firm-level predictors. 
+
+variables:
+outcome (digital/green transition): binary (0/1); 
+predictors: firm size, turnover, strategy (digital/green), innovation (digital only), barriers (to each transition), sector, country.
+
+
+
+
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
