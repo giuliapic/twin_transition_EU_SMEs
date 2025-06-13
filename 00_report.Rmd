@@ -8,16 +8,55 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 INTRODUCTION 
 
-RQ: "what structural and strategic factors are correlated with the adoption of green and digital practices among Europe?"
+Small and medium-sized enterprises (SMEs) are central to the European Union’s digital strategy, particularly in the context of the so-called "twin transition" that combines digitalisation with sustainability. While substantial efforts have been made to foster innovation, not all firms adopt new technologies at the same pace, nor do they integrate sustainability concerns into their strategic plans. Understanding the micro-level determinants of digital technology adoption—and whether this adoption correlates with a sustainability orientation – could be a starting point for designing effective policies.
+This study addresses the following research question:
+
+To what extent are digitally active SMEs also more likely to engage in sustainable business practices?
+
+Using data from the Flash Eurobarometer 498 (2021), which surveys SMEs across EU countries on their use of digital technologies and related strategic orientations, we investigate both the predictors of digital adoption and the potential association between digitalisation and sustainability commitment. This contributes to the literature on the enabling role of digital technologies in sustainable innovation, offering an empirical test of the complementarity between the two dimensions within a single integrated framework.
 
 
+2. Methods
+2.1 Data
+The analysis is based on the Flash Eurobarometer 498: SMEs, start-ups, scale-ups and entrepreneurship, conducted in 2021 on a representative sample of SMEs in all EU member states. The survey includes detailed information on firms’ adoption of digital technologies, their perception of barriers, strategic priorities, and sustainability-related behaviours. We restrict the analysis to complete cases and harmonise key variables across sectors, sizes, and countries. The unit of analysis is the individual firm.
 
-METHODS
+2.2	Variables
+Main Dependent Variable
+-	Digital Index:
+A count variable indicating the number of technologies adopted by the firm (range 0–7), based on Q23: 
+1 = IA; 2=cloud; 3=robotics; 4=smart devices; 5=big data; 6=high speed infrastr; 7=blockchain; 9= none of these
 
-Data source: Flash Eurobarometer 486 (2020) on digitalizazion
+
+Secondary Dependent Variable (if I have time)
+-	Environmental index:
+Q24: “In terms of environmental and social sustainability, which of the following actions, if any, is your enterprise actively taking?”
+	Count: 1= recycling; 2= reducing consumption or impact on natural resources; 3= saving energy or switching to sustainable energy sources; 4=developing sustainable products or services; 5-6-7-8 = csr; 9=none; 10=NA
+
+
+Independent Variables
+-	Firm size (small, medium), from size variable.
+-	Turnover level (low, medium, high), from Q4B.
+-	Sector: grouped into macro-categories using NACE codes.
+-	Innovation Strategy: binary from Q7A (Does the firm have a strategic growth or innovation plan?).
+-	Digital Attitude: ordinal from Q22 (1 = already implemented digital tech; 5 = no plans).
+-	Barriers to Innovation: dummy variables from Q20–Q21:
+1)	Lack of financial resources
+2)	Lack of digital skills or awareness
+3)	Regulatory/infrastructure barriers
+4)	Lack of market demand
+
+
+2.3 Analytical Strategy
+Multivariate regression models with the following structure:
+1.	Model 1 – Negative Binomial Regression
+Outcome: digital_tech_index
+Predictors: firm characteristics, strategy, barriers
+2.	Model 2 – Logistic Regression
+Outcome: green_index
+Predictors: same as above, including digital_tech_index as main explanatory variable
+
 
 
 ## R Markdown

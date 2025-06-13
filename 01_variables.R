@@ -8,7 +8,6 @@ library(sjPlot)
 
 #uploading the datasets: 489 (green) + 4 86 (digital)
 
-eb_green <- read_dta("C:/data_giulia/data/eurobarometer/data_489_green.dta")
 eb_digital <- read_dta("C:/data_giulia/data/eurobarometer/data_486_digital.dta")
 
 
@@ -16,11 +15,7 @@ eb_digital <- read_dta("C:/data_giulia/data/eurobarometer/data_486_digital.dta")
 table(eb_green$isocntry)
 
 #how many observation do we have? 
-#population: green 17.662, digital 16.365
-#questions: green 253, digital 385
-
-dim(eb_green)
-dim(eb_digital)
+#population: 16.365
 
 
 
