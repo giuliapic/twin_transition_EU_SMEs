@@ -11,25 +11,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 INTRODUCTION 
 
-RQ: "what structural and strategic facrors are correlated with the adoption of green and digital practices among Europe?"
+RQ: "what structural and strategic factors are correlated with the adoption of green and digital practices among Europe?"
 
 
 
 METHODS
 
-Data source: Flash Eurobarometer 486 (2020) on digitalizazion, Flash Eurobarometer 498 (2021) on sustainability.
-
-
-sample: SMEs across EU countries (~12.000 per survey).
-analysis: two logistic regression models (one for digital and one for green adoption) using firm-level predictors. 
-
-variables:
-outcome (digital/green transition): binary (0/1); 
-predictors: firm size, turnover, strategy (digital/green), innovation (digital only), barriers (to each transition), sector, country.
-
-
-
-
+Data source: Flash Eurobarometer 486 (2020) on digitalizazion
 
 
 ## R Markdown
