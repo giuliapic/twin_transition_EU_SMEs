@@ -8,7 +8,7 @@ library(sjPlot)
 
 #uploading the datasets: 489 (green) + 4 86 (digital)
 
-eb_digital <- read_dta("C:/data_giulia/data/eurobarometer/data_486_digital.dta")
+eb_digital_raw <- read_dta("C:/data_giulia/data/eurobarometer/data_486_digital.dta")
 
 
 #which countries are in the survey 
@@ -34,6 +34,15 @@ table(eb_green$isocntry)
 
 # "size" = dimension of the firm
 
+
+eb_digital_raw$size
+
+eb_digital_raw$log_size = log(eb_digital_raw$size)
+eb_digital_raw$log_size
+
+hist(eb_digital_raw$size)
+
+hist(eb_digital_raw$log_size)
 
 #Q4B = turnover = "what was the annual turnover of your enterprise in 2019?"(from 1 to 9)
 
@@ -70,7 +79,26 @@ table(eb_green$isocntry)
 #Q22 which of the following options best describes your enterprise's approach to digital technologies 
 #multiple response 
 
+
+
 #Q23 which of the following digital technologies has your enterprise adopted to date? 
+
+
+#modifica dataset originale con eb_digital 
+
+eb_digital_raw$q23_1
+
+select(eb_digital_raw, q23_1:q23_7)
+
+eb_digital <- mutate(eb_digital_raw, digital_index = q23_1 + q23_2 + q23_3 + q23_4 + q23_5 + q23_6 + q23_7)
+
+#aggiungiamo tutte le altre variabili + digital index 
+
+
+
+
+
+
 
 #q24 in terms of environmental and csr, which of the following actions is your enterprise acrively taken? 
 
