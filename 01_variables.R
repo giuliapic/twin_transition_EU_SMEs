@@ -20,62 +20,68 @@ table(eb_digital_raw$isocntry)
 
 #selecting the variables for EB_digital 
 
+
+
 #DEPENDENT VARIABLE OF GREEN SUSTAINABILITY
 
 # eco innovation Q19_5 --> DUMMY 
 
 attr(eb_digital_raw$q19_5, "labels")
 
-
 eb_digital <- eb_digital_raw %>%
   mutate(eco_innovation = ifelse(q19_5 == 1, 1, 0))
 
-eb_digital$eco_innovation
-
 
 # recycling 
- attr(eb_digital_raw$q24_1, "labels")
- 
- 
- eb_digital <- eb_digital_raw %>%
+eb_digital <- eb_digital_raw %>%
    mutate(recycling = ifelse(q24_1 == 1, 1, 0))
 
- eb_digital$recycling
-
+ 
  #resource reduction 
-
-attr(eb_digital_raw$q24_2, "labels")
-
 eb_digital <- eb_digital_raw %>%
   mutate(res_red = ifelse(q24_2 == 1, 1, 0))
 
-eb_digital$res_red
-
 
 # energy saving 
-
-attr(eb_digital_raw$q24_3, "labels")
-
 eb_digital <- eb_digital_raw %>%
   mutate(energy_saving = ifelse(q24_2 == 1, 1, 0))
 
-eb_digital$energy_saving
-
 
 # sustainable products 
-
-attr(eb_digital_raw$q24_4, "labels")
-
 eb_digital <- eb_digital_raw %>%
   mutate(sust_prod = ifelse(q24_2 == 1, 1, 0))
 
-eb_digital$sust_prod
+
+
+#---------------
 
 
 
+#INDEPENDENT VARIABLE 
 
+#AI
+eb_digital <- eb_digital_raw %>% 
+  mutate(AI_var = ifelse(q23_1 == 1, 1, 0))
 
+#bigdata
+eb_digital <- eb_digital_raw %>% 
+  mutate(bigdata = ifelse(q23_5 == 1, 1, 0))
 
+#cloud
+eb_digital <- eb_digital_raw %>% 
+  mutate(cloud = ifelse(q23_2 == 1, 1, 0))
+
+#highspeed
+eb_digital <- eb_digital_raw %>% 
+  mutate(highspeed = ifelse(q23_6 == 1, 1, 0))
+
+#robot
+eb_digital <- eb_digital_raw %>% 
+  mutate(robot = ifelse(q23_3 == 1, 1, 0))
+
+#smart devices
+eb_digital <- eb_digital_raw %>% 
+  mutate(smart = ifelse(q23_4 == 1, 1, 0))
 
 
 
