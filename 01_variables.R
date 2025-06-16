@@ -54,12 +54,25 @@ eb_digital$res_red
 
 # energy saving 
 
-attr(eb_digital_raw$q24_2, "labels")
+attr(eb_digital_raw$q24_3, "labels")
 
 eb_digital <- eb_digital_raw %>%
-  mutate(res_red = ifelse(q24_2 == 1, 1, 0))
+  mutate(energy_saving = ifelse(q24_2 == 1, 1, 0))
 
-eb_digital$res_red
+eb_digital$energy_saving
+
+
+# sustainable products 
+
+attr(eb_digital_raw$q24_4, "labels")
+
+eb_digital <- eb_digital_raw %>%
+  mutate(sust_prod = ifelse(q24_2 == 1, 1, 0))
+
+eb_digital$sust_prod
+
+
+
 
 
 
