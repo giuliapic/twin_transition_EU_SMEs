@@ -44,6 +44,14 @@ eb_digital$eco_innovation
 
  #resource reduction 
 
+attr(eb_digital_raw$q24_2, "labels")
+
+eb_digital <- eb_digital_raw %>%
+  mutate(res_red = ifelse(q24_2 == 1, 1, 0))
+
+eb_digital$res_red
+
+
 
 #modifica dataset originale con eb_digital 
 
