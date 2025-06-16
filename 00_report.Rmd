@@ -8,56 +8,6 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-INTRODUCTION 
-
-Small and medium-sized enterprises (SMEs) are central to the European Union’s digital strategy, particularly in the context of the so-called "twin transition" that combines digitalisation with sustainability. While substantial efforts have been made to foster innovation, not all firms adopt new technologies at the same pace, nor do they integrate sustainability concerns into their strategic plans. Understanding the micro-level determinants of digital technology adoption—and whether this adoption correlates with a sustainability orientation – could be a starting point for designing effective policies.
-This study addresses the following research question:
-
-To what extent are digitally active SMEs also more likely to engage in sustainable business practices?
-
-Using data from the Flash Eurobarometer 498 (2021), which surveys SMEs across EU countries on their use of digital technologies and related strategic orientations, we investigate both the predictors of digital adoption and the potential association between digitalisation and sustainability commitment. This contributes to the literature on the enabling role of digital technologies in sustainable innovation, offering an empirical test of the complementarity between the two dimensions within a single integrated framework.
-
-
-2. Methods
-2.1 Data
-The analysis is based on the Flash Eurobarometer 498: SMEs, start-ups, scale-ups and entrepreneurship, conducted in 2021 on a representative sample of SMEs in all EU member states. The survey includes detailed information on firms’ adoption of digital technologies, their perception of barriers, strategic priorities, and sustainability-related behaviours. We restrict the analysis to complete cases and harmonise key variables across sectors, sizes, and countries. The unit of analysis is the individual firm.
-
-2.2	Variables
-Main Dependent Variable
--	Digital Index:
-A count variable indicating the number of technologies adopted by the firm (range 0–7), based on Q23: 
-1 = IA; 2=cloud; 3=robotics; 4=smart devices; 5=big data; 6=high speed infrastr; 7=blockchain; 9= none of these
-
-
-Secondary Dependent Variable (if I have time)
--	Environmental index:
-Q24: “In terms of environmental and social sustainability, which of the following actions, if any, is your enterprise actively taking?”
-	Count: 1= recycling; 2= reducing consumption or impact on natural resources; 3= saving energy or switching to sustainable energy sources; 4=developing sustainable products or services; 5-6-7-8 = csr; 9=none; 10=NA
-
-
-Independent Variables
--	Firm size (small, medium), from size variable.
--	Turnover level (low, medium, high), from Q4B.
--	Sector: grouped into macro-categories using NACE codes.
--	Innovation Strategy: binary from Q7A (Does the firm have a strategic growth or innovation plan?).
--	Digital Attitude: ordinal from Q22 (1 = already implemented digital tech; 5 = no plans).
--	Barriers to Innovation: dummy variables from Q20–Q21:
-1)	Lack of financial resources
-2)	Lack of digital skills or awareness
-3)	Regulatory/infrastructure barriers
-4)	Lack of market demand
-
-
-2.3 Analytical Strategy
-Multivariate regression models with the following structure:
-1.	Model 1 – Negative Binomial Regression
-Outcome: digital_tech_index
-Predictors: firm characteristics, strategy, barriers
-2.	Model 2 – Logistic Regression
-Outcome: green_index
-Predictors: same as above, including digital_tech_index as main explanatory variable
-
-
 
 ## R Markdown
 
@@ -78,3 +28,66 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+1.	Introduction
+The twin transition—comprising digital transformation and sustainability—is a central pillar of the European Union’s industrial policy. While policy frameworks increasingly promote the alignment of digitalisation with environmental goals, the empirical evidence on whether digitally active firms are also more committed to green practices remains limited. Most existing studies address sustainability in a broad sense, conflating environmental actions with social and governance dimensions. However, disentangling these components is essential for evidence-based policymaking.
+This study aims to analyse the relationship between digital technology adoption and green sustainability practices among European SMEs, using microdata from the Flash Eurobarometer 486 (2020). Specifically, we focus on five environmentally oriented actions: eco-innovation, recycling, resource reduction, energy saving, and sustainable product development. By adapting the methodological approach of Horbach (2024)—but restricting the sustainability dimension to environmental actions—we provide a more targeted assessment of how digitalisation aligns with ecological outcomes at the firm level.
+
+2.	Methods
+2.1 Data
+We use data from the Flash Eurobarometer 486, a survey conducted among small and medium-sized enterprises (SMEs) in all EU Member States in February 2020. The sample includes firms across all industrial sectors, stratified by country, size, and industry. We restrict our analysis to the 27 EU countries and focus on firms with complete information on key variables.
+Dependent Variables
+We examine five binary indicators representing green sustainability practices:
+•	eco_innovation (Q19_5)
+•	recycling (Q24_1)
+•	resource_reduction (Q24_2)
+•	energy_saving (Q24_3)
+•	sustainable_products (Q24_4)
+Each is coded as 1 if the company reports engaging in the respective activity, 0 otherwise. Additionally, we construct a sustainability_index (range 0–5) by summing these five indicators, providing a count measure of environmental engagement.
+Independent Variables
+Our main explanatory variables are six binary indicators of digital technology adoption:
+•	AI (Q23_1)
+•	Big data (Q23_5)
+•	Cloud computing (Q23_2)
+•	High-speed infrastructure (Q23_6)
+•	Robotics (Q23_3)
+•	Smart devices/sensors (Q23_4)
+Each variable equals 1 if the firm reports using the technology.
+Control Variables
+Following Horbach, we include firm-level controls capturing economic, structural, and contextual characteristics:
+•	Export orientation (Q12B_1–3)
+•	Family ownership (Q13_7)
+•	Financial capacity (Q4A_7–8)
+•	High-growth firm (Q5_1_4, Q5_2_4)
+•	Industry location (Q8_4)
+•	Founding year (before 2000) (Q1)
+•	Skill shortage as sustainability barrier (Q26_4)
+•	Firm size (number of employees) (Q2B)
+•	Urban location (Q8_1)
+
+2.2 Statistical Models
+
+Two complementary models:
+
+1.	Multivariate Probit: jointly models the probability of engaging in each green action, accounting for correlations between the binary outcomes
+
+2.	Negative Binomial: models the sustainability index (0–5) using the same covariates, to account for overdispersion in the count data
+
+
+
+Results
+...
+
+Discussion
+...
+
+
+
+
+
+
+
+
+
+
