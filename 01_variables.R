@@ -12,76 +12,37 @@ eb_digital_raw <- read_dta("C:/data_giulia/data/eurobarometer/data_486_digital.d
 
 
 #which countries are in the survey 
-table(eb_green$isocntry)
+table(eb_digital_raw$isocntry)
 
 #how many observation do we have? 
 #population: 16.365
 
 
-
-
-
-
 #selecting the variables for EB_digital 
 
+#DEPENDENT VARIABLE OF GREEN SUSTAINABILITY
+
+# eco innovation Q19_5 --> DUMMY 
+
+attr(eb_digital_raw$q19_5, "labels")
 
 
+eb_digital <- eb_digital_raw %>%
+  mutate(eco_innovation = ifelse(q19_5 == 1, 1, 0))
+
+eb_digital$eco_innovation
 
 
+# recycling 
+ attr(eb_digital_raw$q24_1, "labels")
+ 
+ 
+ eb_digital <- eb_digital_raw %>%
+   mutate(recycling = ifelse(q24_1 == 1, 1, 0))
 
-# "nace" = nace code 
+ eb_digital$recycling
 
-
-# "size" = dimension of the firm
-
-
-eb_digital_raw$size
-
-eb_digital_raw$log_size = log(eb_digital_raw$size)
-eb_digital_raw$log_size
-
-hist(eb_digital_raw$size)
-
-hist(eb_digital_raw$log_size)
-
-#Q4B = turnover = "what was the annual turnover of your enterprise in 2019?"(from 1 to 9)
-
-
-#Q7A = "in terms of growth either in employment or in turnover, does your enterprise 
-# 1. have a strategic growth plan 
-#2. plan to grow as a result of introducing some kind of innovation 
-# the other answer are not correlated to the rq (it's a multiple response question)
-
-
-#Q8 could be interesting: "in which of the following areas is your enterprise located?" from large town to rural/industrial area 
-
-#Q13: "in term of ownership, is your enterprise..." multiple response from one person to cooperative 
-
-
-#Q16_6 "how would you rate your business environment in terms of availability of support to help enterprises become more sustainable"
-#Q16_8 "how would you rate your business environment in terms of infrastructure for businesses, such as available office space, internet connectivity etc"
-
-#Q17 what are the biggest problems for your enterprise 
-# 1= difficulties with innovation 
-#3= access to data 
-#8= difficulties with digitalisation 
-#9= other 
-#10 = don't know 
-
-#Q19 "during the past 2 months, has your enterprise introduced any of the following types of innovations? 
-#response from 1 to 7 is "yes", response 8 is "no", response 9 "dont know"
-
-#Q20 "which of the following is a barrier to innovation in your enterprise?"
-#multiple answer
-
-#Q21 uguale alla 20 
-
-#Q22 which of the following options best describes your enterprise's approach to digital technologies 
-#multiple response 
-
-
-
-#Q23 which of the following digital technologies has your enterprise adopted to date? 
+ #resource reduction 
 
 
 #modifica dataset originale con eb_digital 
@@ -93,23 +54,6 @@ select(eb_digital_raw, q23_1:q23_7)
 eb_digital <- mutate(eb_digital_raw, digital_index = q23_1 + q23_2 + q23_3 + q23_4 + q23_5 + q23_6 + q23_7)
 
 #aggiungiamo tutte le altre variabili + digital index 
-
-
-
-
-
-
-
-#q24 in terms of environmental and csr, which of the following actions is your enterprise acrively taken? 
-
-#q25 do you have a strategy or action plan to become a sustainable enterprise? multiple response from 1 "yes it has already been implemented" to 4 "no it will not in the future"
-
-#q26 which of the following are currently preventing your enterprise from becoming sustainable? multiple response 
-
-
-
-
-
 
 
 
