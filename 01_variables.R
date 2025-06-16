@@ -18,13 +18,18 @@ table(eb_digital_raw$isocntry)
 #population: 16.365
 
 
-#selecting the variables for EB_digital 
+#N.B. 
+# variables imported with labelled numeric values (e.g., 0 = "Not mentioned", 1 = "Yes") 
+# do not contain actual NA values unless explicitly coded as such in the dataset. 
+# Therefore, missing values are not expected and are not filtered out during binary recoding. 
+# This applies to all similar variables with labelled 0/1 structures across the dataset.
 
 
 
-#DEPENDENT VARIABLE OF GREEN SUSTAINABILITY
+#DEPENDENT VARIABLE - green - recoded in dummies
 
-# eco innovation Q19_5 --> DUMMY 
+
+# eco innovation Q19_5
 
 attr(eb_digital_raw$q19_5, "labels")
 
@@ -57,7 +62,7 @@ eb_digital <- eb_digital_raw %>%
 
 
 
-#INDEPENDENT VARIABLE 
+#INDEPENDENT VARIABLE - digital - recoded in dummies
 
 #AI
 eb_digital <- eb_digital_raw %>% 
@@ -82,6 +87,77 @@ eb_digital <- eb_digital_raw %>%
 #smart devices
 eb_digital <- eb_digital_raw %>% 
   mutate(smart = ifelse(q23_4 == 1, 1, 0))
+
+
+#------------------
+
+
+#CONTROL VARIABLES - firm level - recoded in dummies
+
+
+#Export
+#the variable has value 1 if it export less than 25%, 2 if it exports between 25% and 50%, 3 if it exports more than 50%, 4 = don't know/no answer, 5= NA
+#the purpose is to create a variable that has value 1 if the firm answer 1,2 or 3. 
+#first i recode each answer in binary form, than i create the new variable that contains at least 1 of the 3 answer recoded. 
+
+
+attr(eb_digital_raw$q12b, "labels")
+
+
+eb_digital <- eb_digital_raw %>%
+  mutate(
+    export = ifelse(q12b %in% 1:3, 1, ifelse(q12b == 4,0,NA))
+  )
+
+table(eb_digital$export, useNA = "always") #NAs are +90%, maybe we should check/create a variable for "non export"
+
+
+#family owned _ 1= mostly or entirely family owned 
+
+eb_digital <- eb_digital_raw %>%
+  mutate(fam_owned = ifelse(q13_7 == 1, 1, 0))
+
+
+#financecap _ if it is high capability 
+
+
+eb_digital <- eb_digital_raw %>%
+  mutate(
+    financecap = ifelse(q4a %in% 7:8, 1,
+                        ifelse(q4a %in% 1:6, 0, NA)))
+    
+
+table(eb_digital$financecap, useNA = "always")
+
+
+
+#highgrowth 
+
+eb_digital <- eb_digital_raw %>%
+  mutate(
+    highgrowth = ifelse(q5_1 == 4 & q5_2 ==4, 1,
+                        ifelse(q5_1 %in% 1:3 & q5_2 %in% 1:3, 0, NA)) #the answer 5 is treated as NA, following the questionnaire
+  )
+
+table(eb_digital$highgrowth, useNA = "always")
+
+
+
+#localisation industrial 
+eb_digital <- eb_digital_raw %>%
+  mutate(
+    indstrl_area = ifelse(q8_4 == 1, 1, 0))
+
+
+#Old firms (founded before 2000 = 1)
+
+attr(eb_digital_raw$q1, "labels")
+
+eb_digital <- eb_digital_raw %>%
+  mutate(
+    old_firm = ifelse(q1 == 4, 1, 0))
+
+table(eb_digital$old_firm)
 
 
 
