@@ -171,7 +171,18 @@ eb_digital <- eb_digital %>%
   )
 
 
+
+
 #Size 
+
+eb_digital$q2b
+
+
+
+
+
+
+
 
 
 
