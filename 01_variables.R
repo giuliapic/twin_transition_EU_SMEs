@@ -1,3 +1,6 @@
+
+# ZOTEO -->CHECK IT, IT'S A TOOL FOR THE LITERATURE 
+
 #libraries 
 
 library(haven)
@@ -31,32 +34,23 @@ table(eb_digital$isocntry)
 
 
 # eco innovation Q19_5
-
 attr(eb_digital$q19_5, "labels")
-
-eb_digital <- eb_digital %>%
-  mutate(eco_innovation = ifelse(q19_5 == 1, 1, 0))
+table(eb_digital$eco_innovation)
 
 
 # recycling 
-eb_digital <- eb_digital %>%
-   mutate(recycling = ifelse(q24_1 == 1, 1, 0))
-
+table(eb_digital$recycling)
  
  #resource reduction 
-eb_digital <- eb_digital %>%
-  mutate(res_red = ifelse(q24_2 == 1, 1, 0))
+table(eb_digital$res_red)
 
 
 # energy saving 
-eb_digital <- eb_digital %>%
-  mutate(energy_saving = ifelse(q24_2 == 1, 1, 0))
+table(eb_digital$energy_saving)
 
 
 # sustainable products 
-eb_digital <- eb_digital %>%
-  mutate(sust_prod = ifelse(q24_2 == 1, 1, 0))
-
+table(eb_digital$sust_prod)
 
 
 #---------------
@@ -66,29 +60,28 @@ eb_digital <- eb_digital %>%
 #INDEPENDENT VARIABLE - digital - recoded in dummies
 
 #AI
-eb_digital <- eb_digital %>% 
-  mutate(AI_var = ifelse(q23_1 == 1, 1, 0))
+attr(eb_digital$q23_1, "labels")
+table(eb_digital$sust_prod)
 
 #bigdata
-eb_digital <- eb_digital %>% 
-  mutate(bigdata = ifelse(q23_5 == 1, 1, 0))
+attr(eb_digital$q23_5, "labels")
+table(eb_digital$bigdata)
 
 #cloud
-eb_digital <- eb_digital %>% 
-  mutate(cloud = ifelse(q23_2 == 1, 1, 0))
+attr(eb_digital$q23_2, "labels")
+table(eb_digital$cloud)
 
 #highspeed
-eb_digital <- eb_digital %>% 
-  mutate(highspeed = ifelse(q23_6 == 1, 1, 0))
+attr(eb_digital$q23_6, "labels")
+table(eb_digital$highspeed)
 
 #robot
-eb_digital <- eb_digital %>% 
-  mutate(robot = ifelse(q23_3 == 1, 1, 0))
+attr(eb_digital$q23_3, "labels")
+table(eb_digital$robot)
 
 #smart devices
-eb_digital <- eb_digital %>% 
-  mutate(smart = ifelse(q23_4 == 1, 1, 0))
-
+attr(eb_digital$q23_4, "labels")
+table(eb_digital$smart)
 
 #------------------
 
@@ -102,7 +95,7 @@ eb_digital <- eb_digital %>%
 #first i recode each answer in binary form, than i create the new variable that contains at least 1 of the 3 answer recoded. 
 
 
-attr(eb_digital_raw$q12b, "labels")
+#attr(eb_digital_raw$q12b, "labels")
 
 eb_digital <- eb_digital %>%
   mutate(
@@ -110,7 +103,7 @@ eb_digital <- eb_digital %>%
   )
 
 table(eb_digital$export, useNA = "always") #NAs are +90%, maybe we should check/create a variable for "non export"
-
+#la eliminiamo momentaneamente 
 
 
 #family owned _ 1= mostly or entirely family owned 
@@ -119,6 +112,8 @@ eb_digital <- eb_digital %>%
 
 
 #financecap _ if it is high capability 
+attr(eb_digital_raw$q4a, "labels")
+
 eb_digital <- eb_digital %>%
   mutate(
     financecap = ifelse(q4a %in% 7:8, 1,
@@ -175,31 +170,123 @@ eb_digital <- eb_digital %>%
 
 #Size 
 
-eb_digital$q2b
+eb_digital <- mutate(eb_digital, ln_size = log(size))
+
+
+#NACE 
+
+nace_labels <- c(
+  "1"  = "Mining and quarrying",
+  "2"  = "Manufacturing",
+  "3"  = "Electricity, gas, steam and air conditioning supply",
+  "4"  = "Water supply; sewerage, waste management and remediation",
+  "5"  = "Construction",
+  "6"  = "Wholesale and retail trade; motor vehicle repair",
+  "7"  = "Transportation and storage",
+  "8"  = "Accommodation and food service activities",
+  "9"  = "Information and communication",
+  "10" = "Financial and insurance activities",
+  "12" = "Real estate activities",
+  "13" = "Professional, scientific and technical activities",
+  "14" = "Education",
+  "16" = "Human health, arts, and other services"  # aggregato residuale (R, Q, P)
+)
+
+
+eb_digital <- eb_digital %>%
+  mutate(
+    nace_a = as.character(nace_a),                     # converte da haven_labelled
+    sector_label = recode(nace_a, !!!nace_labels),     
+    sector_label = as.factor(sector_label),
+    sector_label = droplevels(sector_label)
+  )
+
+#isocntry 
+
+table(eb_digital$isocntry)
+
+country_labels <- c(
+  "AT" = "Austria",
+  "BA" = "Bosnia and Herzegovina",
+  "BE" = "Belgium",
+  "BG" = "Bulgaria",
+  "BR" = "Brazil",
+  "CA" = "Canada",
+  "CY" = "Cyprus",
+  "CZ" = "Czech Republic",
+  "DE" = "Germany",
+  "DK" = "Denmark",
+  "EE" = "Estonia",
+  "ES" = "Spain",
+  "FI" = "Finland",
+  "FR" = "France",
+  "GB" = "United Kingdom",
+  "GR" = "Greece",
+  "HR" = "Croatia",
+  "HU" = "Hungary",
+  "IE" = "Ireland",
+  "IS" = "Iceland",
+  "IT" = "Italy",
+  "JP" = "Japan",
+  "LT" = "Lithuania",
+  "LU" = "Luxembourg",
+  "LV" = "Latvia",
+  "MK" = "North Macedonia",
+  "MT" = "Malta",
+  "NL" = "Netherlands",
+  "NO" = "Norway",
+  "PL" = "Poland",
+  "PT" = "Portugal",
+  "RO" = "Romania",
+  "RS" = "Serbia",
+  "RS-KM" = "Kosovo (UNSCR 1244)",
+  "SE" = "Sweden",
+  "SI" = "Slovenia",
+  "SK" = "Slovakia",
+  "TR" = "Turkey",
+  "US" = "United States"
+)
+
+eb_digital <- eb_digital %>%
+  mutate(country_name = recode(isocntry, !!!country_labels)) %>%
+  mutate(country_name = as.factor(country_name)) %>%
+  mutate(country_name = droplevels(country_name))
 
 
 
+#----------------------------------
+
+#Creato dataset a parte 
+
+dat <- eb_digital %>% select(eco_innovation:skillshortage,nace_a,ln_size,isocntry, -export, -highgrowth)
+
+summary(dat)
+
+dat <- dat %>%
+  filter(ln_size != -Inf) %>%     
+  na.omit() %>%                   
+  mutate(
+    nace_a = as.factor(nace_a),
+    isocntry = as.factor(isocntry)
+  ) %>%
+  mutate(
+    nace_a = droplevels(nace_a),
+    isocntry = droplevels(isocntry)
+  )
 
 
 
+#vediamo 
+dat_clean <- dat_clean %>%
+  mutate(sector_label = recode(nace_a, !!!nace_labels))
+
+
+#-------------------------
 
 
 
-
-
-
-#modifica dataset originale con eb_digital 
-
-eb_digital_raw$q23_1
-
-select(eb_digital_raw, q23_1:q23_7)
-
-eb_digital <- mutate(eb_digital_raw, digital_index = q23_1 + q23_2 + q23_3 + q23_4 + q23_5 + q23_6 + q23_7)
-
-#aggiungiamo tutte le altre variabili + digital index 
-
-
-
+#rispetto al settore e rispetto al paese, dobbiamo scegliere quale variabile prendere di riferimento. 
+#è complesso, quindi al momento li escludo dal glm 
 
 
 
