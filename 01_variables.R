@@ -1,6 +1,3 @@
-
-# ZOTEO -->CHECK IT, IT'S A TOOL FOR THE LITERATURE 
-
 #libraries 
 
 library(haven)
@@ -9,47 +6,72 @@ library(dplyr)
 library(sjPlot)
 
 
-#uploading the datasets: 489 (green) + 4 86 (digital)
+#uploading the dataset Eurobarometer 486
 
 eb_digital_raw <- read_dta("C:/data_giulia/data/eurobarometer/data_486_digital.dta")
 
+#creating a copy of the dataset
+
 eb_digital <- eb_digital_raw
+#total number of observation: 16.365
 
-#which countries are in the survey 
+#checking for countries in the survey 
 table(eb_digital$isocntry)
-
-#how many observation do we have? 
-#population: 16.365
 
 
 #N.B. 
 # variables imported with labelled numeric values (e.g., 0 = "Not mentioned", 1 = "Yes") 
 # do not contain actual NA values unless explicitly coded as such in the dataset. 
-# Therefore, missing values are not expected and are not filtered out during binary recoding. 
+# Therefore, missing values are not expected and are not filtered out while recoding. 
 # This applies to all similar variables with labelled 0/1 structures across the dataset.
 
 
 
-#DEPENDENT VARIABLE - green - recoded in dummies
+#DEPENDENT VARIABLE - green 
 
 
 # eco innovation Q19_5
 attr(eb_digital$q19_5, "labels")
+
+eb_digital <- eb_digital %>%
+  mutate(eco_innovation = ifelse(q19_5 == 1, 1, 0))
+
 table(eb_digital$eco_innovation)
 
 
 # recycling 
+attr(eb_digital$q24_1, "labels")
+
+eb_digital <- eb_digital %>% 
+  mutate(recycling = ifelse(q24_1 == 1, 1, 0))
+
 table(eb_digital$recycling)
- 
- #resource reduction 
-table(eb_digital$res_red)
+
+
+#resource reduction 
+attr(eb_digital$q24_2, "labels")
+
+eb_digital <- eb_digital %>% 
+  mutate(resource_reduction = ifelse(q24_2 == 1, 1, 0))
+
+table(eb_digital$resource_reduction)
 
 
 # energy saving 
+attr(eb_digital$q24_3, "labels")
+
+eb_digital <- eb_digital %>% 
+  mutate(energy_saving = ifelse(q24_3 == 1, 1, 0))
+
 table(eb_digital$energy_saving)
 
 
 # sustainable products 
+attr(eb_digital$q24_4, "labels")
+
+eb_digital <- eb_digital %>%
+  mutate(sust_prod = ifelse(q24_4 == 1, 1, 0))
+
 table(eb_digital$sust_prod)
 
 
@@ -61,87 +83,115 @@ table(eb_digital$sust_prod)
 
 #AI
 attr(eb_digital$q23_1, "labels")
-table(eb_digital$sust_prod)
+
+eb_digital <- eb_digital %>%
+  mutate(AI = ifelse(q23_1 == 1, 1, 0))
+
+table(eb_digital$AI)
 
 #bigdata
 attr(eb_digital$q23_5, "labels")
+
+eb_digital <- eb_digital %>% 
+  mutate(bigdata = ifelse(q23_5 == 1, 1, 0))
+
 table(eb_digital$bigdata)
 
-#cloud
+#cloud computing
 attr(eb_digital$q23_2, "labels")
+
+eb_digital <- eb_digital %>% 
+  mutate(cloud = ifelse(q23_2 == 1, 1, 0))
+
 table(eb_digital$cloud)
 
-#highspeed
+#highspeed infrastructure
 attr(eb_digital$q23_6, "labels")
+
+eb_digital <- eb_digital %>%
+  mutate(highspeed = ifelse(q23_6 ==1, 1, 0))
+
 table(eb_digital$highspeed)
 
-#robot
+#robot for automation
 attr(eb_digital$q23_3, "labels")
+
+eb_digital <- eb_digital %>% 
+  mutate(robot = ifelse(q23_3 == 1, 1, 0))
+
 table(eb_digital$robot)
 
-#smart devices
+#smart devices (sensors, thermostats etc)
 attr(eb_digital$q23_4, "labels")
-table(eb_digital$smart)
+
+eb_digital <- eb_digital %>% 
+  mutate(smart_devices = ifelse(q23_4 == 1, 1, 0))
+
+table(eb_digital$smart_devices)
 
 #------------------
 
 
-#CONTROL VARIABLES - firm level - recoded in dummies
 
 
-#Export
-#the variable has value 1 if it export less than 25%, 2 if it exports between 25% and 50%, 3 if it exports more than 50%, 4 = don't know/no answer, 5= NA
-#the purpose is to create a variable that has value 1 if the firm answer 1,2 or 3. 
-#first i recode each answer in binary form, than i create the new variable that contains at least 1 of the 3 answer recoded. 
+#CONTROL VARIABLES - firm level - recoded in dummies + NAs checking 
+
+#as the answers are not binary, they can contain NAs, so checking for each variable the NAs is necessary.
 
 
-#attr(eb_digital_raw$q12b, "labels")
+
+#Export --- NOT USED in the model, because of the NAs (15.632)
+attr(eb_digital_raw$q12b, "labels")
 
 eb_digital <- eb_digital %>%
   mutate(
     export = ifelse(q12b %in% 1:3, 1, ifelse(q12b == 4,0,NA))
   )
 
-table(eb_digital$export, useNA = "always") #NAs are +90%, maybe we should check/create a variable for "non export"
-#la eliminiamo momentaneamente 
+table(eb_digital$export, useNA = "always") #NAs are >90% --> excluded from models
 
+#family owned  
+attr(eb_digital$q13_7, "labels")
 
-#family owned _ 1= mostly or entirely family owned 
 eb_digital <- eb_digital %>%
   mutate(fam_owned = ifelse(q13_7 == 1, 1, 0))
 
+table(eb_digital$financecap, useNA = "always") #kept for modeling
 
 #financecap _ if it is high capability 
 attr(eb_digital_raw$q4a, "labels")
 
 eb_digital <- eb_digital %>%
-  mutate(
-    financecap = ifelse(q4a %in% 7:8, 1,
+  mutate(financecap = ifelse(q4a %in% 7:8, 1,
                         ifelse(q4a %in% 1:6, 0, NA)))
     
+table(eb_digital$financecap, useNA = "always") #kept for modeling 
 
-table(eb_digital$financecap, useNA = "always")
 
+#highgrowth --- Excluded from the models
+attr(eb_digital$q5_1, "labels")
+attr(eb_digital$q5_2, "labels")
 
-#highgrowth 
 eb_digital <- eb_digital %>%
   mutate(
     highgrowth = ifelse(q5_1 == 4 & q5_2 ==4, 1,
                         ifelse(q5_1 %in% 1:3 & q5_2 %in% 1:3, 0, NA)) #the answer 5 is treated as NA, following the questionnaire
   )
 
-table(eb_digital$highgrowth, useNA = "always")
+table(eb_digital$highgrowth, useNA = "always") #We exclude it
 
 
 
 #localisation industrial 
+attr(eb_digital$q8_4, "labels") #binary, no NAs
+
 eb_digital <- eb_digital %>%
   mutate(
     indstrl_area = ifelse(q8_4 == 1, 1, 0))
 
-table(eb_digital$indstrl_area)
-
 #localisation urban 
+attr(eb_digital$q8_1, "labels") #binary, no NAs
+
 eb_digital <- eb_digital %>% 
   mutate( 
     urban_area = ifelse(q8_1 == 1, 1, 0))
@@ -150,22 +200,20 @@ table(eb_digital$urban_area)
 
 
 #Old firms (founded before 2000 = 1)
-attr(eb_digital$q1, "labels")
+attr(eb_digital$q1, "labels") #NAs check not needed 
 
 eb_digital <- eb_digital %>%
   mutate(
     old_firm = ifelse(q1 == 4, 1, 0))
 
-table(eb_digital$old_firm)
-
 
 #skillshortage 
+attr(eb_digital$q26_4, "labels") #NAs check not needed
+
 eb_digital <- eb_digital %>%
   mutate(
     skillshortage = ifelse(q26_4 == 1,1,0)
   )
-
-
 
 
 #Size 
@@ -189,19 +237,19 @@ nace_labels <- c(
   "12" = "Real estate activities",
   "13" = "Professional, scientific and technical activities",
   "14" = "Education",
-  "16" = "Human health, arts, and other services"  # aggregato residuale (R, Q, P)
+  "16" = "Human health, arts, and other services"  
 )
 
 
 eb_digital <- eb_digital %>%
   mutate(
-    nace_a = as.character(nace_a),                     # converte da haven_labelled
+    nace_a = as.character(nace_a),                    
     sector_label = recode(nace_a, !!!nace_labels),     
     sector_label = as.factor(sector_label),
     sector_label = droplevels(sector_label)
   )
 
-#isocntry 
+#isocntry #multilevel model con intercept random 
 
 table(eb_digital$isocntry)
 
@@ -256,7 +304,7 @@ eb_digital <- eb_digital %>%
 
 #----------------------------------
 
-#Creato dataset a parte 
+#Creation of a separate dataset with the selection of all previous variables 
 
 dat <- eb_digital %>% select(eco_innovation:skillshortage,nace_a,ln_size,isocntry, -export, -highgrowth)
 
@@ -273,20 +321,6 @@ dat <- dat %>%
     nace_a = droplevels(nace_a),
     isocntry = droplevels(isocntry)
   )
-
-
-
-#vediamo 
-dat_clean <- dat_clean %>%
-  mutate(sector_label = recode(nace_a, !!!nace_labels))
-
-
-#-------------------------
-
-
-
-#rispetto al settore e rispetto al paese, dobbiamo scegliere quale variabile prendere di riferimento. 
-#è complesso, quindi al momento li escludo dal glm 
 
 
 
