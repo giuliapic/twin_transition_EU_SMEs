@@ -1,0 +1,42 @@
+[
+	{
+		"id": "horbachDigitalisationSustainabilityMeasures2024",
+		"type": "article-journal",
+		"abstract": "The paper analyses the “twin transition” of digitalisation and sustainability at the firm level. Operational definitions of digitalisation and sustainability allowing the development of fitting empirical indicators are discussed. The possible technical and social transmission channels of the effects of digitalisation on a sustainable firm development are analysed. Less energy consumption induced by intelligent sensoring systems, the reduction of meetings in presence by video conferences or the promotion of home office work leading to less travel activities may lead to a more sustainable production. Digitalisation might also act as pre-condition of eco-process innovations (e. g. the introduction of intelligent control systems leading to material and energy savings). The empirical analysis is based on firm data of the recent Eurobarometer 486/2020 of the European Commission. The econometric results show that “digitally active” firms seem to be more sustainable for all available indicators, but the marginal effects considerably differ between measures such as artificial intelligence, machine learning, or the use of smart devices and intelligent sensors for the various sustainability-related activities of the firms.",
+		"container-title": "Digital Economy and Sustainable Development",
+		"DOI": "10.1007/s44265-024-00043-4",
+		"ISSN": "2731-9423",
+		"issue": "1",
+		"journalAbbreviation": "DESD",
+		"language": "en",
+		"page": "19",
+		"source": "Springer Link",
+		"title": "Digitalisation and sustainability measures at the firm level",
+		"URL": "https://doi.org/10.1007/s44265-024-00043-4",
+		"volume": "2",
+		"author": [
+			{
+				"family": "Horbach",
+				"given": "Jens"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2025",
+					6,
+					21
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2024",
+					9,
+					15
+				]
+			]
+		}
+	}
+]
