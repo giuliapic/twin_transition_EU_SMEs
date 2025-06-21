@@ -4,27 +4,21 @@ library(sjPlot)
 library(mvProbit)
 
 
-#2 Equations, with the same x - excluding NACE & country 
+
+#multi 
+
+fit_mvp <- mvProbit(cbind(eco_innovation, recycling, resource_reduction, energy_saving, sust_prod) ~ 
+                      AI + bigdata + cloud + highspeed + robot + smart_devices + 
+                      fam_owned + financecap + indstrl_area + 
+                      urban_area + skillshortage + nace_a + ln_size + isocntry, 
+                    data = dat)
+
+summary(fit_mvp)
+
+#cartella output in modo da non fittarli più
 
 
-glm(eco_innovation ~ 
-      AI_var + bigdata + cloud + highspeed + robot + smart + 
-      fam_owned + financecap + indstrl_area + 
-      urban_area + skillshortage + ln_size ,
-    data = dat,
-    family = binomial(link = "logit")) %>% summary()
+#funzione per le probabilità marginali 
 
-
-
-formula <-  cbind(eco_innovation, recycling, res_red, energy_saving, sust_prod) ~ 
-  AI_var + bigdata + cloud + highspeed + robot + smart + 
-  fam_owned + financecap + indstrl_area + 
-  urban_area + skillshortage + ln_size
-
-fit <- mvProbit(formula, data = dat)
-
-summary(fit)
-
-save.image("wks.RData")
-
+marginal_effects_mvprobit <- function(fit, data) {}
 
