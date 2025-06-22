@@ -3,7 +3,6 @@
 library(haven)
 library(tidyverse)
 library(dplyr)
-library(sjPlot)
 
 
 #uploading the dataset Eurobarometer 486
@@ -156,7 +155,7 @@ attr(eb_digital$q13_7, "labels")
 eb_digital <- eb_digital %>%
   mutate(fam_owned = ifelse(q13_7 == 1, 1, 0))
 
-table(eb_digital$financecap, useNA = "always") #kept for modeling
+table(eb_digital$fam_owned, useNA = "always") #kept for modeling
 
 #financecap _ if it is high capability 
 attr(eb_digital_raw$q4a, "labels")
@@ -189,6 +188,8 @@ eb_digital <- eb_digital %>%
   mutate(
     indstrl_area = ifelse(q8_4 == 1, 1, 0))
 
+table(eb_digital$indstrl_area)
+
 #localisation urban 
 attr(eb_digital$q8_1, "labels") #binary, no NAs
 
@@ -215,9 +216,10 @@ eb_digital <- eb_digital %>%
     skillshortage = ifelse(q26_4 == 1,1,0)
   )
 
+table(eb_digital$skillshortage)
+
 
 #Size 
-
 eb_digital <- mutate(eb_digital, ln_size = log(size))
 
 
