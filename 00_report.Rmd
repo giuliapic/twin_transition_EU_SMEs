@@ -1,7 +1,7 @@
 ---
-title: "Report of twin transition in SMEs across Europe: analysis from Eurobarometer data"
+title: "Twin transition in SMEs across Europe: a firm-level analysis from Eurobarometer data"
 author: "Giulia Picardi"
-date: "2025-06-08"
+date: "01 july 2025"
 output: html_document
 bibliography: elementi_esportati.json 
 csl: apa.csl
@@ -12,13 +12,6 @@ csl: apa.csl
 knitr::opts_chunk$set(echo = TRUE)
 
 ```
-
-prova citazione (@horbachDigitalisationSustainabilityMeasures2024)
-
-```{r}
-
-```
-
 
 # Introduction
 
@@ -38,64 +31,85 @@ To guide the selection of variables, this study follows the literature-based fra
 
 The data used are thriven from the Flash Eurobarometer 486, a survey conducted among small and medium-sized enterprises (SMEs) in all EU Member States in February 2020. The sample includes firms across all industrial sectors, stratified by country, size, and industry. We restrict our analysis to the 27 EU countries and focus on firms with complete information on key variables.
 
-Dependent Variables
-Five binary indicators representing green sustainability practices are selected following Horbach's methods:
+**Dependent Variables**
 
-•	eco_innovation (Q19_5)
-•	recycling (Q24_1)
-•	resource_reduction (Q24_2)
-•	energy_saving (Q24_3)
-•	sustainable_products (Q24_4)
+Five binary indicators representing green sustainability practices are selected following Horbach's methods: eco innovation, recycling, resource reduction, energy saving, sustainable products.
 
-Each is coded as 1 if the company reports engaging in the respective activity, 0 otherwise. Additionally, a sustainability_index (range 0–5) is constructed by summing these five indicators, providing a count measure of environmental engagement.
+Each is coded as 1 if the company reports engaging in the respective activity, 0 otherwise.
 
 
-Independent Variables
+**Independent Variables**
 
-The main explanatory variables are six binary indicators of digital technology adoption:
-•	AI (Q23_1)
-•	Big data (Q23_5)
-•	Cloud computing (Q23_2)
-•	High-speed infrastructure (Q23_6)
-•	Robotics (Q23_3)
-•	Smart devices/sensors (Q23_4)
+The main explanatory variables are six binary indicators of digital technology adoption:AI, big data, cloud computing, high-speed infrastructure, robotics, smart devices/sensors.
 
-Each variable equals 1 if the firm reports using the technology.
+Each variable equals 1 if the firm reports using the technology, 0 otherwise.
 
 
-Control Variables
+**Control variables**
 
-Following Horbach, firm-level controls capturing economic, structural, and contextual characteristics, are included:
-
-•	Export orientation (Q12B_1–3)
-•	Family ownership (Q13_7)
-•	Financial capacity (Q4A_7–8)
-•	High-growth firm (Q5_1_4, Q5_2_4)
-•	Industry location (Q8_4)
-•	Founding year (before 2000) (Q1)
-•	Skill shortage as sustainability barrier (Q26_4)
-•	Firm size (number of employees) (Q2B)
-•	Urban location (Q8_1)
+Following Horbach, firm-level controls capturing economic, structural, and contextual characteristics, are included: family ownership, financial capacity, high-growth firm, industry location, founding year (before 2000), skill shortage as sustainability barrier, firm size (number of employees), urban location.
 
 
 ## Statistical Models
 
 Two complementary models:
 
-1.	Multivariate Probit: jointly models the probability of engaging in each green action, accounting for correlations between the binary outcomes
+**1.	Multivariate Probit**
 
-2.	Negative Binomial: models the sustainability index (0–5) using the same covariates, to account for overdispersion in the count data
+To investigate the joint determinants of firms' engagement in multiple sustainability practices, we employed a multivariate probit (mvProbit) model. 
+This method is particularly suited for modeling multiple binary outcomes that may be correlated, such as whether a firm engages in eco-innovation, recycling, resource reduction, energy saving, or sustainable production.
+
+The probit model allows for the simultaneous estimation of equations for each binary dependent variable, while accounting for the correlation among their error terms. This approach reflects the realistic assumption that firms’ environmental decisions are interdependent rather than isolated. For instance, a firm investing in eco-innovation may also be more likely to adopt recycling or resource-saving strategies.
+
+The estimation was performed using the maximum likelihood method. 
+To aid interpretation, marginal effects were computed for each equation, representing the change in the predicted probability of each outcome with respect to a one-unit change in the explanatory variables, evaluated at the mean of the covariates.
+
+
+ 2.	Negative Binomial: models the sustainability index (0–5) using the same covariates, to account for overdispersion in the count data
 
 
 
 # Results
-tbd
-```{r}
+
+The marginal effects of the mvProbit model offer insights into how digital, organizational, and contextual factors influence the probability that a firm adopts specific environmental practices.
+
+Table N reports the marginal effects derived from the multivariate probit model, evaluated at the means of the explanatory variables. These effects indicate how a one-unit change in each covariate alters the predicted probability that a firm adopts a given sustainability practice.
+
+```{r marginal-effects-table, echo=FALSE, message=FALSE, warning=FALSE}
+library(readr)
+library(dplyr)
+library(knitr)
+library(tidyverse)
+library(kableExtra)
+
+
+Marginal_Effects_Rmd <- read_csv("G:/Il mio Drive/DAPSCO/3_trim/multivariate/version_control/twin_transition_paper/03_output/marginal_effects_summary_table.csv")
+
+# Tabella ordinata per Outcome e intensità effetto
+Marginal_Effects_Rmd %>%
+  arrange(Outcome, desc(MarginalEffect)) %>%
+  kable(format = "markdown", 
+        digits = 3,
+        caption = "Table N. Marginal effects from the multivariate probit model (|effect| ≥ 0.05)") %>%
+  kable_styling(full_width = FALSE)
 
 ```
 
+For **eco-innovation**, the use of smart devices stands out with the highest positive marginal effect (+14.2 percentage points), followed by big data adoption (+6.6pp). Conversely, firms experiencing skill shortages or belonging to the NACE A10 category are significantly less likely to adopt eco-innovation (-8.9pp and -10.3pp, respectively).
+
+In the case of **recycling**, cloud technology usage and the presence of financial capacity are positively associated with adoption probabilities. However, being located in industrial areas or facing skill shortages is negatively associated with recycling engagement.
+
+For **resource reduction**, positive effects are linked to smart technologies and external financing capabilities, while location in predominantly industrial zones reduces the likelihood of adoption.
+
+**Energy saving** practices are more common among firms using robots and those with access to high-speed internet. Skill shortages and presence in NACE A10 sectors appear again as consistent negative predictors.
+
+Lastly, for **sustainable production**, significant positive effects are observed for AI usage and high-speed connectivity, while industrial localization continues to negatively influence adoption probabilities.
+
+A full breakdown of these effects is provided in Table X (see Appendix).
+
 # Discussion
-tbd
+
+
 
 ## Bibliography 
 
