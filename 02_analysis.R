@@ -1,12 +1,17 @@
+#libraries 
+
 library(tidyverse)
 library(dplyr)
-library(sjPlot)
 library(mvProbit)
 library(broom)
+library(forcats)
+library(magrittr)
 
 
 
-#multivatiate probit model
+#------------------ PROBIT MODEL -------------------------------------------
+
+#fitting multivatiate probit model
 
 fit_mvp <- mvProbit(cbind(eco_innovation, recycling, resource_reduction, energy_saving, sust_prod) ~ 
                       AI + bigdata + cloud + highspeed + robot + smart_devices + 
@@ -17,14 +22,17 @@ fit_mvp <- mvProbit(cbind(eco_innovation, recycling, resource_reduction, energy_
 summary(fit_mvp)
 
 
-#csv creation of the output 
+
+#csv of the output 
 
 fit_mvp_csv <- tidy(fit_mvp)
 
 write.csv(fit_mvp_csv, "appendix_mvprobit_output.csv", row.names = FALSE)
 
 
-#--------------Calculating the marginal effects of the model------------------
+
+
+#------------------ Calculating the marginal effects of the model------------------
 
 marginal_effects_mvProbit <- function(fit, data) {
 
@@ -69,25 +77,83 @@ marginal_effects_mvProbit <- function(fit, data) {
 }
 
 
-#creating an object with marginal effects 
-ME_mvp <- marginal_effects_mvProbit(fit = fit_mvp, data = dat)
 
-ME_mvp
+#----------------FORMATTING THE TABLE----------------- 
 
-#substitution of the "y" label with the variable label 
+# MARGINAL EFFECTS 
+ME <- marginal_effects_mvProbit(fit_mvp, dat) %>%
+  tidyr::spread(key = Equation, value = Marginal_Effect)
 
-ME_labelled <- ME_mvp |> 
-  dplyr::mutate(Equation = dplyr::recode(Equation,
-                                         Y1 = "eco_innovation",
-                                         Y2 = "recycling",
-                                         Y3 = "resource_reduction",
-                                         Y4 = "energy_saving",
-                                         Y5 = "sustnb_prod"
-  ))
+colnames(ME) <- c("Variable", "eco_innovations", "recycling", "resource_reduction", "energy_saving", "sustainable_products")
 
 
-#saving the output as CSV 
-write.csv(ME_labelled, "marginal_effects_mvProbit_.csv", row.names = FALSE)
+# pvalue
+summary = summary(fit_mvp)
+p = summary$estimate[1:325, 4]
+
+pvalue <- marginal_effects_mvProbit(fit_mvp, dat) %>%
+  mutate(pvalue = round(p, 5)) %>%
+  select(-Marginal_Effect) %>%
+  tidyr::spread(key = Equation, value = pvalue)
+
+colnames(pvalue) <- c("Variable", "P_value1", "P_value2", "P_value3", "P_value4", "P_value5")
+
+
+# Join ME and pvalue
+tab_me_p <- left_join(ME, pvalue, by = "Variable") %>%
+  select(Variable,
+         eco_innovations, P_value1,
+         recycling, P_value2,
+         resource_reduction, P_value3,
+         energy_saving, P_value4,
+         sustainable_products, P_value5)
+
+
+
+# Erasing countries and sector of the firm 
+index <- grepl("isocntry", tab_me_p$Variable) | grepl("nace_a", tab_me_p$Variable)
+tab_me_p <- tab_me_p[!index, ]
+tab_me_p <- tab_me_p[tab_me_p$Variable != "(Intercept)", ]
+
+
+# renaming variables
+tab_me_p$Variable <- forcats::fct_recode(tab_me_p$Variable,
+                                         AI = "AI_var",
+                                         bigdata = "bigdata",
+                                         cloud = "cloud",
+                                         family_owned = "fam_owned",
+                                         finance_capability = "financecap",
+                                         industrial_area = "indstrl_area",
+                                         size = "ln_size",
+                                         skills_barrier = "skillshortage",
+                                         smart_devices = "smart",
+                                         urban_area = "urban_area")
+
+# Formatting
+format_table <- function(coef, pval) {
+  if (is.na(coef) | is.na(pval)) return("")
+  stars <- ifelse(pval < 0.01, "***",
+                  ifelse(pval < 0.05, "**",
+                         ifelse(pval < 0.1, "*", "")))
+  paste0(round(coef, 3), stars, " (", round(pval, 3), ")")
+}
+
+# table creation
+table_formatted <- tab_me_p %>%
+  mutate(
+    `Eco-Innovation` = mapply(format_table, eco_innovations, P_value1),
+    `Recycling` = mapply(format_table, recycling, P_value2),
+    `Resource Reduction` = mapply(format_table, resource_reduction, P_value3),
+    `Energy Saving` = mapply(format_table, energy_saving, P_value4),
+    `Sustainable Products` = mapply(format_table, sustainable_products, P_value5)
+  ) %>%
+  select(Variable, `Eco-Innovation`, Recycling, `Resource Reduction`, `Energy Saving`, `Sustainable Products`)
+
+table_formatted
+
+# Saving output
+write.csv(table_formatted, "03_output/table_marginal_effects_formatted.csv", row.names = FALSE)
+
 
 
 
