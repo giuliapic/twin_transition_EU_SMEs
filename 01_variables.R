@@ -26,7 +26,7 @@ table(eb_digital$isocntry)
 
 
 
-#DEPENDENT VARIABLE - green 
+#-----------------DEPENDENT VARIABLE (green)------------------ 
 
 
 # eco innovation Q19_5
@@ -74,11 +74,8 @@ eb_digital <- eb_digital %>%
 table(eb_digital$sust_prod)
 
 
-#---------------
+#--------------- INDEPENDENT VARIABLE (digital)-----------------------------
 
-
-
-#INDEPENDENT VARIABLE - digital - recoded in dummies
 
 #AI
 attr(eb_digital$q23_1, "labels")
