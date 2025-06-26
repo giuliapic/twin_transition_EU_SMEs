@@ -8,7 +8,7 @@ csl: apa.csl
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
@@ -42,7 +42,48 @@ Following Horbach, firm-level controls capturing economic, structural, and conte
 
 ## Statistical Models
 
-Two complementary models:
+**Descriptive statistics**
+
+table for digital adoption 
+
+```{r print_table1, results='asis', echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+library(readr)
+
+digital_summary <- read_csv("03_output/digital_summary.csv")
+
+kable(digital_summary,
+      caption = "Table 1. Digitalisation activities.",
+      format = "html",
+      escape = FALSE,
+      booktabs = TRUE,
+      col.names = c("Digitalisation activities", "In % of all questioned firms"),
+      align = "lc") %>%
+  kable_styling(full_width = FALSE, position = "center",
+                bootstrap_options = c("striped", "hover"))
+```
+
+
+table for sustainability activities 
+```{r print_table2, results='asis', echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+library(readr)
+
+green_summary <- read_csv("03_output/table_green.csv")
+
+kable(green_summary,
+      caption = "Table 2. Eco-sustainable activities.",
+      format = "html",
+      escape = FALSE,
+      booktabs = TRUE,
+      col.names = c("Eco-sustainable activities", "In % of all questioned firms"),
+      align = "lc") %>%
+  kable_styling(full_width = FALSE, position = "center",
+                bootstrap_options = c("striped", "hover"))
+
+```
+
+
 
 **1. Multivariate Probit**
 
@@ -52,7 +93,6 @@ The probit model allows for the simultaneous estimation of equations for each bi
 
 The estimation was performed using the maximum likelihood method. To aid interpretation, marginal effects were computed for each equation, representing the change in the predicted probability of each outcome with respect to a one-unit change in the explanatory variables, evaluated at the mean of the covariates.
 
-2.  Negative Binomial: models the sustainability index (0–5) using the same covariates, to account for overdispersion in the count data
 
 # Results
 
