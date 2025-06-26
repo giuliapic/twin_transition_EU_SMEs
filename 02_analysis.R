@@ -2,14 +2,57 @@
 
 library(tidyverse)
 library(dplyr)
+library(tibble)
 library(mvProbit)
-library(broom)
 library(forcats)
 library(magrittr)
 
 
+#All the outputs are available in the folder "03_output" of this project. 
 
-#------------------ PROBIT MODEL -------------------------------------------
+#HERE is the code to call directly the objects without running all the code 
+#NB: if you try to run the code, BE SURE that you have time and resources for running the Probit model (estimated time: +4h)
+
+
+#descriptive statistics
+write.csv(digital_summary, "03_output/digital_summary.csv", row.names = FALSE)
+write.csv(sust_summary, "03_output/sust_summary.csv", row.names = FALSE)
+
+#Probit model object
+fit_mvp <- readRDS("03_output/fit_mvp.rds") 
+
+#csv of the probit model
+write.csv(fit_mvp_csv, "appendix_mvprobit_output.csv", row.names = FALSE)
+
+#csv of the marginal effects (formatted to be knitted in rmd)
+write.csv(table_formatted, "03_output/table_marginal_effects_formatted.csv", row.names = FALSE)
+
+
+
+
+
+
+#------------------ Descriptive statistics -------------------------------------
+
+#digital variables 
+
+
+
+#green variables 
+
+
+
+
+
+
+#------------------ PROBIT MODEL -----------------------------------------------
+
+#HERE 
+#there's the output already saved, ready to be called from the "output" file in this project. 
+#I RECOMMAND to not run the model as it could take more than 4 hours with a good processor. 
+
+fit_mvp <- readRDS("03_output/fit_mvp.rds") 
+
 
 #fitting multivatiate probit model
 
@@ -23,16 +66,18 @@ summary(fit_mvp)
 
 
 
-#csv of the output 
+#saving the csv of the output 
 
 fit_mvp_csv <- tidy(fit_mvp)
 
 write.csv(fit_mvp_csv, "appendix_mvprobit_output.csv", row.names = FALSE)
 
+#saving the RDS of the output 
 
 
 
-#------------------ Calculating the marginal effects of the model------------------
+
+#------------------ Calculating the marginal effects of the model---------------
 
 marginal_effects_mvProbit <- function(fit, data) {
 
@@ -41,7 +86,8 @@ marginal_effects_mvProbit <- function(fit, data) {
   
   # creating the right side of the formula
 
-  formula_rhs <- as.formula(paste("~", deparse(as.formula(fit$call$formula)[[3]])))
+  formula_rhs <- as.formula(paste("~", paste(deparse(as.formula(fit$call$formula)[[3]]), collapse = " ")))
+  
   X <- model.matrix(formula_rhs, data = data)
   X_mean <- colMeans(X)
   var_names <- names(X_mean)
@@ -78,7 +124,7 @@ marginal_effects_mvProbit <- function(fit, data) {
 
 
 
-#----------------FORMATTING THE TABLE----------------- 
+#----------------- FORMATTING THE TABLE ---------------------------------------- 
 
 # MARGINAL EFFECTS 
 ME <- marginal_effects_mvProbit(fit_mvp, dat) %>%
@@ -112,22 +158,26 @@ tab_me_p <- left_join(ME, pvalue, by = "Variable") %>%
 
 # Erasing countries and sector of the firm 
 index <- grepl("isocntry", tab_me_p$Variable) | grepl("nace_a", tab_me_p$Variable)
+
 tab_me_p <- tab_me_p[!index, ]
+
 tab_me_p <- tab_me_p[tab_me_p$Variable != "(Intercept)", ]
 
 
 # renaming variables
 tab_me_p$Variable <- forcats::fct_recode(tab_me_p$Variable,
-                                         AI = "AI_var",
+                                         AI = "AI",
                                          bigdata = "bigdata",
                                          cloud = "cloud",
-                                         family_owned = "fam_owned",
-                                         finance_capability = "financecap",
-                                         industrial_area = "indstrl_area",
-                                         size = "ln_size",
-                                         skills_barrier = "skillshortage",
-                                         smart_devices = "smart",
+                                         family_owned = "family_owned",
+                                         finance_capability = "finance_capability",
+                                         industrial_area = "industrial_area",
+                                         size = "size",
+                                         skills_barrier = "skills_barrier",
+                                         smart_devices = "smart_devices",
                                          urban_area = "urban_area")
+
+
 
 # Formatting
 format_table <- function(coef, pval) {

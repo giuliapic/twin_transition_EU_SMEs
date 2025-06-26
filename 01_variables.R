@@ -5,6 +5,14 @@ library(tidyverse)
 library(dplyr)
 
 
+# HERE there's the new dataset obtained at the end of this file - useful if you don't need to run all the code.
+#It contains the variables ready to be fitted in the model you find in the "02_analysis" file.  
+
+dat <- readRDS("03_output/dat.rds") 
+
+
+#---------------- Settings ---------------------------------------------------------------------------------------------------------------------------------
+
 #uploading the dataset Eurobarometer 486
 
 eb_digital_raw <- read_dta("C:/data_giulia/data/eurobarometer/data_486_digital.dta")
@@ -13,9 +21,6 @@ eb_digital_raw <- read_dta("C:/data_giulia/data/eurobarometer/data_486_digital.d
 
 eb_digital <- eb_digital_raw
 #total number of observation: 16.365
-
-#checking for countries in the survey 
-table(eb_digital$isocntry)
 
 
 #N.B. 
@@ -125,15 +130,10 @@ eb_digital <- eb_digital %>%
 
 table(eb_digital$smart_devices)
 
-#------------------
+#------------------ CONTROL VARIABLES - firm level ---------------------------
 
 
-
-
-#CONTROL VARIABLES - firm level - recoded in dummies + NAs checking 
-
-#as the answers are not binary, they can contain NAs, so checking for each variable the NAs is necessary.
-
+#NB. As some of the answers are not binary like the previous ones, they can contain NAs, so checking for each variable the NAs is necessary.
 
 
 #Export --- NOT USED in the model, because of the NAs (15.632)
@@ -204,8 +204,10 @@ eb_digital <- eb_digital %>%
   mutate(
     old_firm = ifelse(q1 == 4, 1, 0))
 
+table(eb_digital$old_firm)
 
-#skillshortage 
+
+#skill shortage 
 attr(eb_digital$q26_4, "labels") #NAs check not needed
 
 eb_digital <- eb_digital %>%
@@ -248,7 +250,7 @@ eb_digital <- eb_digital %>%
     sector_label = droplevels(sector_label)
   )
 
-#isocntry #multilevel model con intercept random 
+# country 
 
 table(eb_digital$isocntry)
 
@@ -294,6 +296,8 @@ country_labels <- c(
   "US" = "United States"
 )
 
+#this script is to adapt the variable "country" for fitting it in the model 
+
 eb_digital <- eb_digital %>%
   mutate(country_name = recode(isocntry, !!!country_labels)) %>%
   mutate(country_name = as.factor(country_name)) %>%
@@ -301,9 +305,7 @@ eb_digital <- eb_digital %>%
 
 
 
-#----------------------------------
-
-#Creation of a separate dataset with the selection of all previous variables 
+#--------------- Creating a new dataset with the selection of all previous variables only ----------------------------
 
 dat <- eb_digital %>% select(eco_innovation:skillshortage,nace_a,ln_size,isocntry, -export, -highgrowth)
 
@@ -322,10 +324,12 @@ dat <- dat %>%
   )
 
 
+#Saving the new dataset in the output  
+saveRDS(dat, "03_output/dat.rds")
 
 
-
-
+#calling "dat" without the need to re-execute all the script: 
+dat <- readRDS("03_output/dat.rds")
 
 
 
