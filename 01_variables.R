@@ -197,16 +197,6 @@ eb_digital <- eb_digital %>%
 table(eb_digital$urban_area)
 
 
-#Old firms (founded before 2000 = 1)
-attr(eb_digital$q1, "labels") #NAs check not needed 
-
-eb_digital <- eb_digital %>%
-  mutate(
-    old_firm = ifelse(q1 == 4, 1, 0))
-
-table(eb_digital$old_firm)
-
-
 #skill shortage 
 attr(eb_digital$q26_4, "labels") #NAs check not needed
 
@@ -330,7 +320,7 @@ saveRDS(dat, "03_output/dat.rds")
 
 #calling "dat" without the need to re-execute all the script: 
 dat <- readRDS("03_output/dat.rds")
-
+dat
 
 
 

@@ -12,7 +12,7 @@ library(magrittr)
 #All the outputs are available in the folder "03_output" of this project. 
 
 #HERE is the code to call directly the objects without running all the code 
-#NB: if you try to run the code, BE SURE that you have time and resources for running the Probit model (estimated time: +4h)
+#NB: if you try to run the code, BE SURE that you have time and resources for running the Probit model (estimated time: >4h)
 
 
 #descriptive statistics
@@ -88,12 +88,12 @@ label_controls <- c(
   financecap = "High financial capability",
   indstrl_area = "Located in an industrial area",
   urban_area = "Located in a big city", 
-  old_firm = "firm founded before 2000", 
   skillshortage = "Skills barrier", 
   ln_size = "Size")
 
 
 binary_controls <- setdiff(names(label_controls), "ln_size")
+
 table_controls <- dat %>%
   select(all_of(binary_controls)) %>%
   summarise(across(everything(), ~ round(mean(.x, na.rm = TRUE) * 100, 1))) %>%
@@ -112,8 +112,8 @@ write_csv(table_controls, "03_output/table_controls.csv")
 #------------------ PROBIT MODEL -----------------------------------------------
 
 #HERE 
-#there's the output already saved, ready to be called from the "output" file in this project. 
-#I RECOMMAND to not run the model as it could take more than 4 hours with a good processor. 
+#you find the final output of the model already saved, ready to be called from the "output" file in this project. 
+#I RECOMMEND to not run the model as it could take more than 4 hours with a good processor. 
 
 fit_mvp <- readRDS("03_output/fit_mvp.rds") 
 
@@ -137,7 +137,8 @@ fit_mvp_csv <- tidy(fit_mvp)
 write.csv(fit_mvp_csv, "appendix_mvprobit_output.csv", row.names = FALSE)
 
 #saving the RDS of the output 
-
+saveRDS(fit_mvp, "03_output/fit_mvp.rds")
+fit_mvp <- readRDS("03_output/fit_mvp.rds") 
 
 
 
@@ -190,7 +191,7 @@ marginal_effects_mvProbit <- function(fit, data) {
 
 #----------------- FORMATTING THE TABLE ---------------------------------------- 
 
-# MARGINAL EFFECTS 
+# Marginal effects
 ME <- marginal_effects_mvProbit(fit_mvp, dat) %>%
   tidyr::spread(key = Equation, value = Marginal_Effect)
 
@@ -255,7 +256,7 @@ format_table <- function(coef, pval) {
   paste0(round(coef, 3), stars, " (", round(pval, 3), ")")
 }
 
-# table creation
+# final table creation
 table_formatted <- tab_me_p %>%
   mutate(
     `Eco-Innovation` = mapply(format_table, eco_innovations, P_value1),
@@ -270,7 +271,6 @@ table_formatted
 
 # Saving output
 write.csv(table_formatted, "03_output/table_marginal_effects_formatted.csv", row.names = FALSE)
-
 
 
 
