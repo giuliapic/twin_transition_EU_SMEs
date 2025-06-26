@@ -2,6 +2,7 @@
 
 library(tidyverse)
 library(dplyr)
+library(readr)
 library(tibble)
 library(mvProbit)
 library(forcats)
@@ -15,17 +16,18 @@ library(magrittr)
 
 
 #descriptive statistics
-write.csv(digital_summary, "03_output/digital_summary.csv", row.names = FALSE)
-write.csv(sust_summary, "03_output/sust_summary.csv", row.names = FALSE)
+table_digital <- read_csv("03_output/table_digital.csv")
+table_green   <- read_csv("03_output/table_green.csv")
+table_controls <- read_csv("03_output/table_controls.csv")
 
 #Probit model object
 fit_mvp <- readRDS("03_output/fit_mvp.rds") 
 
 #csv of the probit model
-write.csv(fit_mvp_csv, "appendix_mvprobit_output.csv", row.names = FALSE)
+appendix_probit <- read.csv("03_output/appendix_mvprobit_output.csv")
 
 #csv of the marginal effects (formatted to be knitted in rmd)
-write.csv(table_formatted, "03_output/table_marginal_effects_formatted.csv", row.names = FALSE)
+table_ME_formatted <- read.csv("03_output/table_marginal_effects_formatted.csv")
 
 
 
@@ -36,13 +38,75 @@ write.csv(table_formatted, "03_output/table_marginal_effects_formatted.csv", row
 
 #digital variables 
 
+label_digital <- c(
+  AI = "AI, machine learning, pattern recognition",
+  bigdata = "Big data analytics",
+  cloud = "Cloud computing",
+  highspeed = "High-speed infrastructure",
+  robot = "Use of robots, automation of processes",
+  smart_devices = "Smart devices, intelligent sensors, thermostats"
+)
+
+table_digital <- dat %>%
+  select(all_of(names(label_digital))) %>%
+  summarise(across(everything(), ~ round(mean(.x) * 100, 1))) %>%
+  pivot_longer(cols = everything(), names_to = "variable", values_to = "percent") %>%
+  mutate(label = label_digital[variable]) %>%
+  select(label, percent)
+
+table_digital
+
+write_csv(table_digital, "03_output/table_digital.csv")
 
 
 #green variables 
 
+label_green <- c(
+  eco_innovation = "Eco-innovation",
+  recycling = "Recycling or reuse of materials",
+  resource_reduction = "Reduction of material use and resources",
+  energy_saving = "Energy saving measures or renewables",
+  sust_prod = "Development of sustainable products/services"
+)
+
+table_green <- dat %>%
+  select(all_of(names(label_green))) %>%
+  summarise(across(everything(), ~ round(mean(.x, na.rm = TRUE) * 100, 1))) %>%
+  pivot_longer(cols = everything(), names_to = "variable", values_to = "percent") %>%
+  mutate(label = label_green[variable]) %>%
+  select(label, percent)
+
+table_green
+
+write_csv(table_green,   "03_output/table_green.csv")
 
 
+#control variables 
 
+label_controls <- c( 
+  fam_owned = "Family owned",
+  financecap = "High financial capability",
+  indstrl_area = "Located in an industrial area",
+  urban_area = "Located in a big city", 
+  old_firm = "firm founded before 2000", 
+  skillshortage = "Skills barrier", 
+  ln_size = "Size")
+
+
+binary_controls <- setdiff(names(label_controls), "ln_size")
+table_controls <- dat %>%
+  select(all_of(binary_controls)) %>%
+  summarise(across(everything(), ~ round(mean(.x, na.rm = TRUE) * 100, 1))) %>%
+  pivot_longer(cols = everything(), names_to = "variable", values_to = "percent") %>%
+  mutate(label = label_controls[variable]) %>%
+  select(label, percent)
+
+table_controls
+
+write_csv(table_controls, "03_output/table_controls.csv")
+
+
+#descriptive statistics of all the variables 
 
 
 #------------------ PROBIT MODEL -----------------------------------------------
@@ -163,19 +227,22 @@ tab_me_p <- tab_me_p[!index, ]
 
 tab_me_p <- tab_me_p[tab_me_p$Variable != "(Intercept)", ]
 
+tab_me_p$Variable
 
 # renaming variables
 tab_me_p$Variable <- forcats::fct_recode(tab_me_p$Variable,
-                                         AI = "AI",
-                                         bigdata = "bigdata",
-                                         cloud = "cloud",
-                                         family_owned = "family_owned",
-                                         finance_capability = "finance_capability",
-                                         industrial_area = "industrial_area",
-                                         size = "size",
-                                         skills_barrier = "skills_barrier",
-                                         smart_devices = "smart_devices",
-                                         urban_area = "urban_area")
+                                         "AI, machine learning, pattern recognition" = "AI, machine learning, pattern recognition",
+                                         "Big data analytics" = "Big data analytics",
+                                         "Cloud computing" = "Cloud computing",
+                                         "Family owned" = "Family owned",
+                                         "High finance capability" = "High finance capability",
+                                         "High speed infrastructure" = "High speed infrastructure",
+                                         "Industrial area" = "Industrial area",
+                                         "Size" = "Size",
+                                         "Use of robots, automation of processes" = "Use of robots, automation of processes",
+                                         "Skills barrier" = "Skills barrier",
+                                         "Smart devices, intelligent sensors, thermostats" = "Smart devices, intelligent sensors, thermostats",
+                                         "Urban area" = "Urban area")
 
 
 
