@@ -78,7 +78,7 @@ table_green <- dat %>%
 
 table_green
 
-write_csv(table_green,   "03_output/table_green.csv")
+write_csv(table_green, "03_output/table_green.csv")
 
 
 #control variables 

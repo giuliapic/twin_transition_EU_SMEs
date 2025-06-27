@@ -50,7 +50,7 @@ table for digital adoption
 library(kableExtra)
 library(readr)
 
-digital_summary <- read_csv("03_output/digital_summary.csv")
+digital_summary <- read_csv("03_output/table_digital.csv")
 
 kable(digital_summary,
       caption = "Table 1. Digitalisation activities.",

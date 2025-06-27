@@ -9,6 +9,7 @@ library(dplyr)
 #It contains the variables ready to be fitted in the model you find in the "02_analysis" file.  
 
 dat <- readRDS("03_output/dat.rds") 
+dat <- read.csv("03_output/dat.csv") 
 
 
 #---------------- Settings ---------------------------------------------------------------------------------------------------------------------------------
@@ -316,11 +317,11 @@ dat <- dat %>%
 
 #Saving the new dataset in the output  
 saveRDS(dat, "03_output/dat.rds")
-
+write.csv(dat, "03_output/dat.csv")
 
 #calling "dat" without the need to re-execute all the script: 
 dat <- readRDS("03_output/dat.rds")
-dat
+dat <- read.csv("03_output/dat.csv")
 
 
 
