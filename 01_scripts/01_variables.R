@@ -302,6 +302,8 @@ dat <- eb_digital %>% select(eco_innovation:skillshortage,nace_a,ln_size,isocntr
 
 summary(dat)
 
+
+# Mutating countries and sectors as factors - to create dummies in the model that can be used to account for fixed errors
 dat <- dat %>%
   filter(ln_size != -Inf) %>%     
   na.omit() %>%                   
