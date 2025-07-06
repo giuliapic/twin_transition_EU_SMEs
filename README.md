@@ -7,7 +7,7 @@ This repository contains all materials related to the final project for the cour
 Flash Eurobarometer 486 (2020) – https://search.gesis.org/research_data/ZA7637 
 
 
-#Analysis:
+# Analysis:
 
 - Model: Multivariate Probit  
 - Software: R    
@@ -19,7 +19,7 @@ Flash Eurobarometer 486 (2020) – https://search.gesis.org/research_data/ZA7637
 All data transformations and modelling steps are documented in the scripts.
 
 
-#Dependencies:
+# Dependencies:
 
 library(haven)
 library(tidyverse)
