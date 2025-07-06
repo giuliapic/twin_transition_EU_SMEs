@@ -287,7 +287,7 @@ country_labels <- c(
   "US" = "United States"
 )
 
-#this script is to adapt the variable "country" for fitting it in the model 
+#adapting the variable "country" to fit it in the model + recoding labels
 
 eb_digital <- eb_digital %>%
   mutate(country_name = recode(isocntry, !!!country_labels)) %>%

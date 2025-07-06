@@ -591,52 +591,92 @@ display: none;
 </div>
 
 
+<style type="text/css">
+body{ 
+font-size: 18px;
+font-family: Helvetica;
+}
+</style>
 <div id="abstract" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Abstract</h1>
-<p>The European twin transition agenda places SMEs at the centre of efforts to combine digitalisation and environmental sustainability. This paper tests the hypothesis that European SMEs adopting digital technologies are more likely to implement green-oriented practices. Cross-sectional data from Flash Eurobarometer 486 (2020) are used to estimate a multivariate probit model on five ecological activities: eco-innovation, recycling, resource efficiency, energy saving, and the development of sustainable products.
-The analysis explicitly focuses on environmental outcomes of sustainability – excluding broader CSR dimensions - to refine the scope of inquiry in relation to prior studies and isolate the ecological core of the twin transition. This focus leverages the strength of the multivariate specification, which estimates correlated behaviours within a unified domain. The results suggest that cloud computing, big data, and robotic automation are consistently associated with green engagement, particularly in innovation and efficiency-related areas. Conversely, AI and smart devices display weaker and more selective association. Skill shortages appear negatively associated with energy-saving and resource-reduction behaviours, pointing to human capital as a potential constraint in the ecological transformation of SMEs.</p>
+<p>The European twin transition agenda places SMEs at the centre of efforts to combine digitalisation and environmental sustainability. This paper tests the hypothesis that European SMEs adopting digital technologies are more likely to implement green-oriented practices. Cross-sectional data from Flash Eurobarometer 486 (2020) are used to estimate a multivariate probit model on five ecological activities: eco-innovation, recycling, resource efficiency, energy saving, and the development of sustainable products. The analysis explicitly focuses on environmental outcomes of sustainability – excluding broader CSR dimensions - to refine the scope of inquiry in relation to prior studies and isolate the ecological core of the twin transition. This focus leverages the strength of the multivariate specification, which estimates correlated behaviours within a unified domain. The results suggest that cloud computing, big data, and robotic automation are consistently associated with green engagement, particularly in innovation and efficiency-related areas. Conversely, AI and smart devices display weaker and more selective association. Skill shortages appear negatively associated with energy-saving and resource-reduction behaviours, pointing to human capital as a potential constraint in the ecological transformation of SMEs.</p>
 <p>While the analysis does not allow for causal claims, it highlights patterned alignments between digital capabilities and ecological practices. By focusing on a pre-policy juncture, it offers a grounded perspective on how SMEs engaged with environmental objectives in the absence of structured institutional mandates - shedding light on the early organisational dynamics of green alignment and providing a baseline for future research on how such trajectories evolve under shifting institutional conditions.</p>
 </div>
 <div id="introduction" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Introduction</h1>
-<p>The transition toward a greener and more digital economy has become a defining challenge for the European Union. In response to climate change, resource scarcity, technological disruption, and long-term strategic goals, the EU has placed the twin transition as foundational principles of the future European economy <span class="citation">(European Commission, 2020)</span>. This dual transformation requires the active involvement of all sectors of society, including businesses, governments, and civil society.
-Among economic actors, small and medium-sized enterprises are considered a central pillar of the European productive system and are expected to play a crucial role in translating policy objectives into concrete operational practices. These expectations can be interpreted as institutional pressures that shape not only the strategic priorities of firms, but also the symbolic alignment with broader societal goals. Yet, the capacity of SMEs to pursue both digital and environmental strategies remains highly uneven, depending on structural conditions, organisational capabilities, and available incentives. Although some firms have started to integrate digital and green strategies, the degree of integration varies significantly across the SME landscape. Despite the strategic prioritisation of the twin transition at EU level, many SMEs face structural and cognitive barriers that hinder the effective implementation of both green and digital practices <span class="citation">(Rupeika-Apoga &amp; Petrovska, 2022)</span>.
-The literature has examined this relationship from multiple perspectives, including eco-innovation and corporate social responsibility (CSR) <span class="citation">(del Río et al., 2016; Horbach, 2024; Triguero et al., 2013)</span>. Digital technologies are increasingly viewed not only as tools for improving efficiency, but also as catalysts for systemic change. These technologies enable real-time monitoring and tracking, support life-cycle assessment and predictive simulations, and facilitate the virtualisation of activities - thereby reducing emissions linked to production, logistics, and mobility <span class="citation">(Joint Research Centre
+<p>The transition toward a greener and more digital economy has become a defining challenge for the European Union. In response to climate change, resource scarcity, technological disruption, and long-term strategic goals, the EU has placed the twin transition as foundational principles of the future European economy <span class="citation">(European Commission, 2020)</span>. This dual transformation requires the active involvement of all sectors of society, including businesses, governments, and civil society. Among economic actors, small and medium-sized enterprises are considered a central pillar of the European productive system and are expected to play a crucial role in translating policy objectives into concrete operational practices. These expectations can be interpreted as institutional pressures that shape not only the strategic priorities of firms, but also the symbolic alignment with broader societal goals. Yet, the capacity of SMEs to pursue both digital and environmental strategies remains highly uneven, depending on structural conditions, organisational capabilities, and available incentives. Although some firms have started to integrate digital and green strategies, the degree of integration varies significantly across the SME landscape. Despite the strategic prioritisation of the twin transition at EU level, many SMEs face structural and cognitive barriers that hinder the effective implementation of both green and digital practices <span class="citation">(Rupeika-Apoga &amp; Petrovska, 2022)</span>. The literature has examined this relationship from multiple perspectives, including eco-innovation and corporate social responsibility (CSR) <span class="citation">(del Río et al., 2016; Horbach, 2024; Triguero et al., 2013)</span>. Digital technologies are increasingly viewed not only as tools for improving efficiency, but also as catalysts for systemic change. These technologies enable real-time monitoring and tracking, support life-cycle assessment and predictive simulations, and facilitate the virtualisation of activities - thereby reducing emissions linked to production, logistics, and mobility <span class="citation">(Joint Research Centre
 (European Commission), 2023)</span>.</p>
-<p>Following DiMaggio and Powell’s <span class="citation">(DiMaggio &amp; Powell, 1983)</span> theory of institutional isomorphism, the diffusion of digital and green practices among firms may not solely reflect instrumental adaptation to market or environmental challenges, but also a process of conformity to institutionalised expectations. As the EU consolidates a normative agenda linking innovation and sustainability, organisations may adopt digital and environmental routines to gain legitimacy within their fields, regardless of short-term efficiency gains. From this perspective, the alignment between digitalisation and sustainability is not merely a matter of capabilities or incentives, but also a response to the symbolic pressures embedded in the European policy discourse.
-This lens is particularly relevant to our study, which tests whether SMEs reporting digital adoption are also more likely to engage in ecological practices. If isomorphic pressures are at play, one would expect a pattern of relational alignment between digitalisation and environmental engagement - even in the absence of formal “twin transition” programmes.
-Rather than indicating a generalised twin transition across the SME landscape, the results reveal differentiated alignments between specific digital technologies and environmental outcomes, suggesting that institutional signals alone - without policy shifts and financial supports - were insufficient to generate systematic twin transition behaviours among SMEs.
-Indeed, the relationship between digitalisation and sustainability is not deterministic.
-Recent studies have pointed out that, although SMEs are central to the EU’s twin transition strategy, the actual implementation of integrated digital and green strategies remains limited <span class="citation">(Burinskienė &amp; Nalivaikė, 2024)</span>. Many firms adopt either digital or sustainable practices but struggle to pursue both simultaneously. Organisational factors such as firm size, internal competences, and strategic orientation play a key role in shaping whether and how these two dimensions are pursued jointly, especially within SMEs <span class="citation">(Horbach, 2024)</span>.</p>
-<p>This study analyses how different forms of digital adoption relate to distinct environmental practices among European SMEs, drawing on data from the Flash Eurobarometer 486 <span class="citation">(European Commission, Brussels, 2020)</span>,which provides cross-sectional insights into firm behaviour across EU member states along with several non-EU countries. Since the survey predates both the adoption of the European Green Deal and the onset of the COVID-19 pandemic, it offers a unique snapshot of SME strategies at a time when sustainability was gaining traction, but before the implementation of major policy and financial instruments. This temporal context allows for the analysis of structural conditions that shaped firms’ engagement in the twin transition prior to institutional acceleration.</p>
-<p>Drawing on the model developed by Horbach <span class="citation">(Horbach, 2024)</span>, the analysis assesses whether digitally active firms are more likely to implement environmental measures, treating digitalisation as a potential enabler of green practices. This approach is informed by a broader body of research on the uneven diffusion of sustainability innovations <span class="citation">(del Río et al., 2016; Triguero et al., 2013)</span>, and the temporal lags that often exist between policy design and behavioural change at the firm level <span class="citation">(OECD, 2019)</span>. The purpose of this analysis is to contribute to a deeper understanding of how the twin transition is implemented in practice - and to identify the organisational conditions that may support its implementation within the European SME landscape. To guide the selection of variables, this study follows the literature-based framework adopted by the aforementioned study by Horbach <span class="citation">(Horbach, 2024)</span>, who identifies relevant indicators of digitalisation and environmental engagement on the same dataset, by drawing on previous research on eco-innovation and digital transformation in SMEs.
-Digitalisation is captured through the presence of specific technological applications following the DESI index <span class="citation">(European Commission, 2022)</span> provided by the European Commission - such as AI, cloud computing, big data analytics, and automation - while environmental engagement is assessed through firm-level practices including energy efficiency, resource savings, recycling, and the development of sustainable products.<br />
-In order to ensure conceptual clarity and model consistency, the analysis focuses exclusively on environmental practices, rather than adopting a broader CSR perspective. By restricting the domain to green practices, the study provides to fill the gap in this analysis, enlightening the role of digital activities for environmental sustainability only. This modelling choice is particularly relevant in the context of a multivariate probit approach, which assumes underlying correlations among the dependent variables. Focusing only on ecological indicators - such as energy saving, recycling, and resource efficiency - allows the model to isolate environmental behaviour as a specific domain of action, analytically distinct from broader social or reputational concerns.</p>
-<p>The findings confirm Horbach’s insights, showing that the adoption of digital technologies is not uniformly associated with green practices. While cloud computing, big data, and robotic automation exhibit consistent and positive associations with various environmental outcomes, other technologies - such as artificial intelligence and smart devices - appear less systematically integrated with ecological strategies. Additionally, firms reporting skill shortages are less likely to engage in energy-saving and resource-reduction activities, suggesting that human capital constraints may hinder the alignment of digital and green objectives within SMEs.
-These results point to an uneven and selective pattern of digital–green integration across European firms, offering a grounded understanding of how environmental goals were approached in the absence of strong policy incentives.
-The study thus contributes to trace how digital infrastructures and organisational constraints intersected with emerging ecological practices before policy shifts, offering a contribution to ongoing debates on the uneven social embedding of sustainability transitions.</p>
+<p>Following DiMaggio and Powell’s <span class="citation">(DiMaggio &amp; Powell, 1983)</span> theory of institutional isomorphism, the diffusion of digital and green practices among firms may not solely reflect instrumental adaptation to market or environmental challenges, but also a process of conformity to institutionalised expectations. As the EU consolidates a normative agenda linking innovation and sustainability, organisations may adopt digital and environmental routines to gain legitimacy within their fields, regardless of short-term efficiency gains. From this perspective, the alignment between digitalisation and sustainability is not merely a matter of capabilities or incentives, but also a response to the symbolic pressures embedded in the European policy discourse. This lens is particularly relevant to our study, which tests whether SMEs reporting digital adoption are also more likely to engage in ecological practices. If isomorphic pressures are at play, one would expect a pattern of relational alignment between digitalisation and environmental engagement - even in the absence of formal “twin transition” programmes. Rather than indicating a generalised twin transition across the SME landscape, the results reveal differentiated alignments between specific digital technologies and environmental outcomes, suggesting that institutional signals alone - without policy shifts and financial supports - were insufficient to generate systematic twin transition behaviours among SMEs. Indeed, the relationship between digitalisation and sustainability is not deterministic. Recent studies have pointed out that, although SMEs are central to the EU’s twin transition strategy, the actual implementation of integrated digital and green strategies remains limited <span class="citation">(Burinskienė &amp; Nalivaikė, 2024)</span>. Many firms adopt either digital or sustainable practices but struggle to pursue both simultaneously. Organisational factors such as firm size, internal competences, and strategic orientation play a key role in shaping whether and how these two dimensions are pursued jointly, especially within SMEs <span class="citation">(Horbach, 2024)</span>.</p>
+<p>This study investigates whether the adoption of specific digital technologies is associated with greater engagement in environmental practices among European SMEs. Using data from the Flash Eurobarometer 486 <span class="citation">(European Commission, Brussels, 2020)</span> - which provides cross-sectional insights into firm behaviour across EU member states along with several non-EU countries - it examines how patterns of digital uptake relate to eco-innovation, energy saving, recycling, resource efficiency and sustainable product development. Since the survey predates both the adoption of the European Green Deal and major post-pandemic investments, it offers a unique opportunity to explore how firms were positioning themselves in the ecological dimension of the twin transition before policy acceleration. This setting enables a descriptive assessment of organisational conditions and digital infrastructures associated with early-stage sustainability behaviours.</p>
+<p>Building on Horbach’s operational framework <span class="citation">(Horbach, 2024)</span>, which identifies key firm-level indicators of digitalisation and sustainability. This approach is informed by a broader body of research on the uneven diffusion of sustainability innovations <span class="citation">(del Río et al., 2016; Triguero et al., 2013)</span>, and the temporal lags that often exist between policy design and behavioural change at the firm level <span class="citation">(OECD, 2019)</span>. The purpose of this analysis is to contribute to a deeper understanding of how the twin transition was implemented in practice - and to identify the organisational conditions that might have supported its implementation within the European SME landscape. To guide the selection of variables, this study follows the literature-based framework adopted by the aforementioned study by Horbach <span class="citation">(Horbach, 2024)</span>, who identifies relevant indicators of digitalisation and environmental engagement on the same dataset, by drawing on previous research on eco-innovation and digital transformation in SMEs. Digitalisation is captured through the presence of specific technological applications following the DESI index <span class="citation">(European Commission, n.d., 2022)</span> provided by the European Commission - such as AI, cloud computing, big data analytics, and automation - while environmental engagement is assessed through firm-level practices including energy efficiency, resource savings, recycling, and the development of sustainable products. The “human capital” dimension of the DESI index is not included among the digital predictors, as the analysis deliberately focuses on technological infrastructures rather than skills availability. This decision is both theoretical — aiming to isolate the technological core of digitalisation — and empirical, given that the variable that represents “skill shortages” in the organization is modelled separately as a control barrier variable. Similarly, in order to ensure conceptual clarity and model consistency, the scope of the dependent variables is also intentionally confined to environmental practices - rather than adopting a broader CSR perspective. By restricting these domains, the study provides to fill the gap of previous analysis, enlightening the role of digital activities for environmental sustainability and digital technology only. Concerning the dependent variable, this modelling choice is particularly relevant in the context of a multivariate probit approach adopted in this study, which assumes underlying correlations among them. Focusing only on ecological indicators - such as energy saving, recycling, and resource efficiency - allows the model to isolate environmental behaviour as a specific domain of action, analytically distinct from broader social or reputational concerns.</p>
+<p>The findings confirm Horbach’s insights, showing that the adoption of digital technologies is not uniformly associated with green practices. While cloud computing, big data, and robotic automation exhibit consistent and positive associations with various environmental outcomes, other technologies - such as artificial intelligence and smart devices - appear less systematically integrated with ecological strategies. Additionally, firms reporting skill shortages are less likely to engage in energy-saving and resource-reduction activities, suggesting that human capital constraints may hinder the alignment of digital and green objectives within SMEs. These results point to an uneven and selective pattern of digital–green integration across European firms, offering a grounded understanding of how environmental goals were approached in the absence of strong policy incentives. The study thus contributes to trace how digital infrastructures and organisational constraints intersected with emerging ecological practices before policy shifts, offering a contribution to ongoing debates on the uneven social embedding of sustainability transitions.</p>
 </div>
 <div id="methods" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Methods</h1>
-<div id="data" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Data</h2>
-<p>The data used are thriven from the Flash Eurobarometer 486, a survey conducted among small and medium-sized enterprises (SMEs) in all EU Member States in February 2020. The sample includes firms across all industrial sectors, stratified by country, size, and industry. We restrict our analysis to the 27 EU countries and focus on firms with complete information on key variables.</p>
-<p><strong>Dependent Variables</strong></p>
-<p>Five binary indicators representing green sustainability practices are selected following Horbach’s methods: eco innovation, recycling, resource reduction, energy saving, sustainable products.</p>
-<p>Each is coded as 1 if the company reports engaging in the respective activity, 0 otherwise.</p>
-<p><strong>Independent Variables</strong></p>
-<p>The main explanatory variables are six binary indicators of digital technology adoption:AI, big data, cloud computing, high-speed infrastructure, robotics, smart devices/sensors.</p>
-<p>Each variable equals 1 if the firm reports using the technology, 0 otherwise.</p>
-<p><strong>Control variables</strong></p>
-<p>Following Horbach, firm-level controls capturing economic, structural, and contextual characteristics, are included: family ownership, financial capacity, high-growth firm, industry location, founding year (before 2000), skill shortage as sustainability barrier, firm size (number of employees), urban location.</p>
-</div>
-<div id="statistical-models" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Statistical Models</h2>
-<p><strong>Descriptive statistics</strong></p>
-<p>table for digital adoption</p>
+<p>This study employs cross-sectional data from the Flash Eurobarometer 486 <span class="citation">(European Commission, Brussels, 2020)</span>, a large-scale survey conducted in 2020 among small and medium-sized enterprises (SMEs) across all EU Member States, along with several non-EU countries such as Bosnia and Herzegovina, Brazil, Canada and United States of America. The dataset includes 16,365 firms and enables a joint analysis of digitalisation and environmental engagement at firm level. The timing of the survey, immediately preceding the institutional launch of the Green Deal and major post-pandemic recovery plans, offers a rare opportunity to observe a valuable snapshot of SMEs in a pre-policy acceleration phase, largely unfiltered by recent institutional incentives.</p>
+<p><strong>Data</strong></p>
+<p>The five dependent variables used in this study (<em>Table 3.1</em>) are binary indicators derived from question Q23 of the Eurobarometer survey; each coded as 1 if the firm reports engaging in a given environmental activity. This operationalisation builds on Horbach’s framework <span class="citation">(Horbach, 2024)</span>, which draws on OECD guidelines and earlier classifications of eco-innovation strategies. Specifically, Horbach distinguishes between process-related eco-innovations (e.g., energy and resource efficiency) and product-related innovations (e.g., sustainable products, recycling), echoing early work by Rennings <span class="citation">(Rennings, 2000)</span>, who conceptualised eco-innovation as a multidimensional phenomenon affecting both production processes and market outputs. This distinction is particularly useful for understanding how ecological objectives are embedded at the firm level, as it captures both internal transformations and externally visible innovation. While Horbach includes both environmental and CSR-related items, this study restricts its scope to ecological behaviours only in order to provide a more analytically coherent contribution to the literature on green innovation. The rationale is both theoretical and methodological: green practices represent a more clearly defined policy domain, and their joint modelling avoids the conceptual heterogeneity that would result from incorporating CSR measures with different motivational and organisational logics. Including heterogeneous outcomes - such as CSR or social responsibility indicators - would conflate distinct behavioural domains and potentially distort the estimated associations, requiring robustness checks with other models that address heterogeneity. Indeed, in the aforementioned paper that addresses similar hypotheses using the same dataset, Horbach also includes a negative binomial model as a robustness check – a specification that may be more appropriate when broader constructs like CSR are involved but less pressing in this case due to the restricted analytical domain. This modelling choice enhances internal validity by minimizing conceptual noise and aligning dependent variables around a consistent environmental logic.</p>
 <table class="table table-striped table-hover" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-(#tab:print_table1)Table 1. Digitalisation activities.
+<span id="tab:unnamed-chunk-1">Table 3.1: </span>Descriptive statistics for eco-sustainable activities (percentages).
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Eco-sustainable activities
+</th>
+<th style="text-align:center;">
+In % of all questioned firms
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Eco-innovation
+</td>
+<td style="text-align:center;">
+23.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Recycling or reuse of materials
+</td>
+<td style="text-align:center;">
+63.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Reduction of material use and resources
+</td>
+<td style="text-align:center;">
+53.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Energy saving measures or renewables
+</td>
+<td style="text-align:center;">
+54.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Development of sustainable products/services
+</td>
+<td style="text-align:center;">
+35.2
+</td>
+</tr>
+</tbody>
+</table>
+<p>The main explanatory variables in the model (<em>Table 3.2</em>) capture firm-level digital maturity across six technological domains: artificial intelligence (AI), big data analytics, cloud computing, high-speed connectivity, robotics, and smart devices or sensors. Each variable is represented by a binary indicator derived from item Q15 of the Flash Eurobarometer 486 (2020), taking the value 1 if the firm reports adoption of the respective technology. This disaggregated approach allows for a more granular test of the core hypothesis: that some digital adoptions may be systematically associated with environmental engagement. The use of separate indicators, rather than a composite index, aligns with the structure of the original dataset and ensures compatibility with the multivariate probit specification, which estimates the marginal contribution of each technological domain across five environmental outcomes. To translate this conceptualisation into measurable firm-level indicators, the selection of digital variables is guided by the structure of the Digital Economy and Society Index (DESI) developed by the European Commission <span class="citation">(European Commission, n.d., 2022)</span>. DESI identifies four pillars of digital development - connectivity, human capital, digital public services, and the integration of digital technology - of which the latter two are particularly relevant to enterprise behaviour. The six technologies included in this study reflect core components of DESI’s “integration of digital technology” dimension and serve as empirical proxies for the firm’s digital capacity to collect, process, and act upon information. Their inclusion in the model enables the identification of differentiated effects across technological domains, providing insight into which aspects of digitalisation are more tightly linked to specific environmental practices. As previously reported in the introduction session, the ‘human capital’ component of the DESI index is excluded from the main digital predictors, as it could represent a structural constraint rather than a technological tool, and is modelled separately as a control variable (skill shortages) to narrow the domain to digital technology only.</p>
+<table class="table table-striped table-hover" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-2">Table 3.2: </span>Descriptive statistics for digitalisation activities (percentages).
 </caption>
 <thead>
 <tr>
@@ -699,15 +739,15 @@ Smart devices, intelligent sensors, thermostats
 </tr>
 </tbody>
 </table>
-table for sustainability activities
+<p>Control variables reported in <em>Table 3.3</em> reflect structural and organisational firm characteristics shown in the literature to influence environmental strategies: family ownership <span class="citation">(Beise &amp; Rennings, 2005)</span>, financial capability <span class="citation">(Cainelli et al., 2020)</span>, high-growth orientation, location in industrial or urban areas, skill shortages – as perceived barriers to green innovation, firm size – measured as the natural logarithm of the number of employees to account for skewed distribution and diminishing returns in scale effects, and sector of activity – collapsed into macro-categories using NACE codes. The inclusion of financial and organisational barriers is particularly relevant given the evidence from Rupeika-Apoga and Petrovska on the constraints SMEs face in simultaneously implementing digital and green innovations <span class="citation">(Rupeika-Apoga &amp; Petrovska, 2022)</span>; indeed, the variable on skill shortages is particularly salient, as the aforementioned study suggests that human capital constraints are a critical bottleneck in SMEs’ ability to engage in twin transition strategies. This variable reflects perceived – not objectively measured – constraints, potentially capturing managerial awareness or strategic prioritisation, rather than actual workforce composition. However, as reported in the discussion session, this variable could function both as a control and a potential moderator, highlighting organizational capacity as a pathway of influence.</p>
 <table class="table table-striped table-hover" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-(#tab:print_table2)Table 2. Eco-sustainable activities.
+<span id="tab:unnamed-chunk-3">Table 3.3: </span>Descriptive statistics for control variables (percentages)
 </caption>
 <thead>
 <tr>
 <th style="text-align:left;">
-Eco-sustainable activities
+Characteristic of the firm
 </th>
 <th style="text-align:center;">
 In % of all questioned firms
@@ -717,59 +757,58 @@ In % of all questioned firms
 <tbody>
 <tr>
 <td style="text-align:left;">
-Eco-innovation
+Family owned
 </td>
 <td style="text-align:center;">
-23.8
+22.7
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Recycling or reuse of materials
+High financial capability
 </td>
 <td style="text-align:center;">
-63.5
+16.9
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Reduction of material use and resources
+Located in an industrial area
 </td>
 <td style="text-align:center;">
-53.6
+14.5
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Energy saving measures or renewables
+Located in a big city
 </td>
 <td style="text-align:center;">
-54.2
+47.6
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Development of sustainable products/services
+Skills barrier
 </td>
 <td style="text-align:center;">
-35.2
+21.7
 </td>
 </tr>
 </tbody>
 </table>
-<p><strong>1. Multivariate Probit</strong></p>
-<p>To investigate the joint determinants of firms’ engagement in multiple sustainability practices, we employed a multivariate probit (mvProbit) model. This method is particularly suited for modeling multiple binary outcomes that may be correlated, such as whether a firm engages in eco-innovation, recycling, resource reduction, energy saving, or sustainable production.</p>
-<p>The probit model allows for the simultaneous estimation of equations for each binary dependent variable, while accounting for the correlation among their error terms. This approach reflects the realistic assumption that firms’ environmental decisions are interdependent rather than isolated. For instance, a firm investing in eco-innovation may also be more likely to adopt recycling or resource-saving strategies.</p>
-<p>The estimation was performed using the maximum likelihood method. To aid interpretation, marginal effects were computed for each equation, representing the change in the predicted probability of each outcome with respect to a one-unit change in the explanatory variables, evaluated at the mean of the covariates.</p>
-</div>
+<p><strong>Multivariate Probit model</strong></p>
+<p>The analysis relies on a multivariate probit specification, jointly estimating the five binary outcomes to capture the potential interdependence of green behaviours. This modelling choice is motivated by the theoretical expectation that firms may adopt multiple environmental practices in correlated ways — due either to common organisational drivers or complementary resource configurations. The use of a joint estimation framework allows for the modelling of latent correlations in the error terms across equations, which would be lost in separate binomial regressions. The model is estimated using the mvProbit function in R, and average marginal effects (AMEs) are computed to ease interpretation. AMEs offer an intuitive summary of the marginal impact of each explanatory variable on the probability of each outcome, averaged over the distribution of observed covariates. This is particularly useful in models where coefficients themselves are not directly interpretable in probability terms. Indeed, in this case, marginal effects represent the change in the predicted probability of each outcome with respect to a one-unit change in the explanatory variables, evaluated at the mean of the covariates.</p>
+<p>Both country and sector fixed effects are included via factor variables, allowing the model to absorb unobserved heterogeneity associated with national institutions and industry-level characteristics. Although the specification does not control for unobserved firm-level characteristics — such as internal culture or strategic orientation — the focus remains descriptive. The cross-sectional nature of the data and the absence of suitable instruments prevent causal inference, but the model still offers a valid approximation of associations under observed conditions. Moreover, standard errors are not cluster-adjusted, which may lead to a mild underestimation of uncertainty if residual correlations exist within country or sectoral groups; firms in the same country or sector may face similar unobserved influences such as national policy or industry norms, causing their error terms to be correlated. However, the inclusion of fixed effects mitigates part of this concern.</p>
 </div>
 <div id="results" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Results</h1>
-<p>The marginal effects of the mvProbit model offer insights into how digital, organizational, and contextual factors influence the probability that a firm adopts specific environmental practices.</p>
-<p>Table N reports the marginal effects derived from the multivariate probit model, evaluated at the means of the explanatory variables. These effects indicate how a one-unit change in each covariate alters the predicted probability that a firm adopts a given sustainability practice.</p>
+<p>The results, summarised in Table 4.1, suggest a differentiated yet coherent pattern of association between digital adoption and environmental practices among European SMEs. Cloud computing emerges as the most consistent predictor across all five environmental outcomes. It shows statistically significant and positive marginal effects on eco-innovation (AME = 0.024, p &lt; 0.05), recycling (0.078, p &lt; 0.001), resource reduction (0.084, p &lt; 0.001), energy saving (0.055, p &lt; 0.001), and sustainable product development (0.067, p &lt; 0.001). These results reinforce the view that cloud infrastructures not only support dematerialisation and operational flexibility but also facilitate scalable data storage and real-time processing capabilities that can enhance environmental monitoring and optimisation processes as suggested in the Joint Research Report of 2022 by the European Union (JRC, 2022). Big data analytics similarly demonstrates significant predictive power, particularly for eco-innovation (0.066, p &lt; 0.001), sustainable products (0.065, p &lt; 0.001), and resource reduction (0.038, p &lt; 0.05). The ability of big data systems to support predictive modelling, traceability, and lifecycle analysis likely contributes to these outcomes, providing firms with the analytical capacities necessary to improve efficiency and reduce waste, as reported by Shajari and David (Shajari &amp; David, 2025). However, its association with energy saving is not statistically significant, which may suggest that its impact is more aligned with product-level innovations rather than energy systems. AI and machine learning display a more selective pattern of significance. While not associated with recycling (AME = 0.01, p = 0.648), AI adoption shows robust positive effects on sustainable product development (0.075, p &lt; 0.001), resource reduction (0.058, p &lt; 0.01), and energy saving (0.053, p &lt; 0.05). These findings are consistent with previous literature suggesting that AI tends to be applied in product-level innovation or advanced optimisation systems, rather than in process-based sustainability practices (Burinskiene &amp; Nalivaike, 2024). Turning to the control variables, family ownership shows significant and positive associations across all green outcomes, most strongly with recycling (0.053, p &lt; 0.001) and resource reduction (0.05, p &lt; 0.001). This supports prior findings that family-owned firms may be more inclined toward long-term strategic behaviour and reputation-sensitive investments, including environmental innovation (Beise &amp; Rennings, 2005). Financial capability also predicts sustainable product engagement (0.039, p &lt; 0.05), though its role in other areas appears more limited. Importantly, perceived skill shortages—used as a proxy for human capital constraints—emerge as a negative predictor for recycling and resource reduction. This aligns with Rupeika-Apoga et al. (2022) study, which highlight the centrality of skilled labour availability in enabling SMEs to pursue complex innovation goals. The negative marginal effects observed suggest that workforce gaps may directly inhibit the capacity to engage in ecological practices, particularly those requiring technical or operational changes. Taken together, the results offer a differentiated landscape in which not all digital technologies exert the same influence on sustainability behaviour, and where organisational characteristics modulate firms’ ability to translate digital capacity into environmental action. Rather than predicting behavioural change, the findings offer a structured lens through which to interpret how digital infrastructures, and organisational constraints may shape ecological engagement across European firms in the current socio-economic configuration.</p>
+<p><em>Robustness and Interpretation</em></p>
+<p>To assess the robustness of the findings, the analysis relies on the estimation of average marginal effects (AMEs), computed at the mean of the explanatory variables. This approach allows for a meaningful interpretation of the non-linear effects associated with each covariate on the five binary outcomes, offering a descriptive understanding of how different forms of digital adoption relate to environmental practices. While the specification does not explicitly account for endogeneity or unobserved firm-level heterogeneity—due to the cross-sectional nature of the data and the lack of appropriate instruments—the use of AMEs provides a structured approximation of how digital and organisational factors are aligned with ecological engagement under observed conditions. Country fixed effects were included in the model to account for institutional and regulatory variation across national contexts. However, standard errors are not cluster-adjusted at the country level, and this limitation should be considered when interpreting statistical significance. No formal tests for multicollinearity or specification redundancy were conducted, and the model does not evaluate joint model stability through variable exclusion or alternative estimation techniques. Despite these constraints, the consistency of patterns across the five outcomes—combined with the theoretical justification for treating them as a coherent analytical domain—supports the internal coherence of the specification. The focus on environmental practices, as opposed to broader sustainability indicators that include social or CSR dimensions, strengthens the comparability of effects and reduces the risk of conflating distinct behavioural logics. As such, the results should be interpreted as robust descriptive associations within the ecological dimension of the twin transition, rather than as causal effects.</p>
 <table class="table table-striped table-hover" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-(#tab:print_table)Marginal effects from the multivariate probit model.
+<span id="tab:unnamed-chunk-4">Table 4.1: </span>Marginal effects from the multivariate probit model.
 </caption>
 <thead>
 <tr>
@@ -1036,22 +1075,21 @@ urban area
 </tr>
 </tbody>
 </table>
-<p>For <strong>eco-innovation</strong>, the use of smart devices stands out with the highest positive marginal effect (+14.2 percentage points), followed by big data adoption (+6.6pp). Conversely, firms experiencing skill shortages or belonging to the NACE A10 category are significantly less likely to adopt eco-innovation (-8.9pp and -10.3pp, respectively).</p>
-<p>In the case of <strong>recycling</strong>, cloud technology usage and the presence of financial capacity are positively associated with adoption probabilities. However, being located in industrial areas or facing skill shortages is negatively associated with recycling engagement.</p>
-<p>For <strong>resource reduction</strong>, positive effects are linked to smart technologies and external financing capabilities, while location in predominantly industrial zones reduces the likelihood of adoption.</p>
-<p><strong>Energy saving</strong> practices are more common among firms using robots and those with access to high-speed internet. Skill shortages and presence in NACE A10 sectors appear again as consistent negative predictors.</p>
-<p>Lastly, for <strong>sustainable production</strong>, significant positive effects are observed for AI usage and high-speed connectivity, while industrial localization continues to negatively influence adoption probabilities.</p>
-<p>A full breakdown of these effects is provided in Table X (see Appendix).</p>
 </div>
 <div id="discussion" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Discussion</h1>
-<div style="page-break-after: always;"></div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0" line-spacing="2">
+<div id="ref-BeiseRennings2005" class="csl-entry">
+Beise, M., &amp; Rennings, K. (2005). Lead markets and regulation: a framework for analyzing the international diffusion of environmental innovations. <em>Ecological Economics</em>, <em>52</em>(1), 5–17. <a href="https://doi.org/10.1016/j.ecolecon.2004.06.007">https://doi.org/10.1016/j.ecolecon.2004.06.007</a>
+</div>
 <div id="ref-BurinskieneNavalike2024" class="csl-entry">
 Burinskienė, A., &amp; Nalivaikė, J. (2024). Digital and Sustainable (Twin) Transformations: A Case of SMEs in the European Union. <em>Sustainability</em>, <em>16</em>(4), Article 4. <a href="https://doi.org/10.3390/su16041533">https://doi.org/10.3390/su16041533</a>
+</div>
+<div id="ref-CainelliDamatoMazzanti2020" class="csl-entry">
+Cainelli, G., D’Amato, A., &amp; Mazzanti, M. (2020). Resource efficient eco-innovations for a circular economy: Evidence from EU firms. <em>Research Policy</em>, <em>49</em>(1), 103827. <a href="https://doi.org/10.1016/j.respol.2019.103827">https://doi.org/10.1016/j.respol.2019.103827</a>
 </div>
 <div id="ref-DelrioPenascoRomero2016" class="csl-entry">
 del Río, P., Peñasco, C., &amp; Romero-Jordán, D. (2016). What drives eco-innovators? A critical review of the empirical literature based on econometric methods. <em>Journal of Cleaner Production</em>, <em>112</em>, 2158–2170. <a href="https://doi.org/10.1016/j.jclepro.2015.09.009">https://doi.org/10.1016/j.jclepro.2015.09.009</a>
@@ -1059,10 +1097,13 @@ del Río, P., Peñasco, C., &amp; Romero-Jordán, D. (2016). What drives eco-inn
 <div id="ref-DiMaggio1983" class="csl-entry">
 DiMaggio, P. J., &amp; Powell, W. W. (1983). The Iron Cage Revisited: Institutional Isomorphism and Collective Rationality in Organizational Fields. <em>American Sociological Review</em>, <em>48</em>(2), 147–160. <a href="https://doi.org/10.2307/2095101">https://doi.org/10.2307/2095101</a>
 </div>
+<div id="ref-DESI2022b" class="csl-entry">
+European Commission. (n.d.). <em>The Digital Economy and Society Index (DESI) | Shaping Europe’s digital future</em>. Retrieved July 5, 2025, from <a href="https://digital-strategy.ec.europa.eu/en/policies/desi">https://digital-strategy.ec.europa.eu/en/policies/desi</a>
+</div>
 <div id="ref-EuropeanCommission2020" class="csl-entry">
 European Commission. (2020). <em>COMMUNICATION FROM THE COMMISSION TO THE EUROPEAN PARLIAMENT, THE EUROPEAN COUNCIL, THE COUNCIL, THE EUROPEAN ECONOMIC AND SOCIAL COMMITTEE AND THE COMMITTEE OF THE REGIONS A New Industrial Strategy for Europe</em>. <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex:52020DC0102">https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex:52020DC0102</a>
 </div>
-<div id="ref-DESI2022" class="csl-entry">
+<div id="ref-DESI2022a" class="csl-entry">
 European Commission. (2022). <em>The Digital Economy and Society Index (DESI) | Shaping Europe’s digital future</em>. <a href="https://digital-strategy.ec.europa.eu/en/policies/desi">https://digital-strategy.ec.europa.eu/en/policies/desi</a>
 </div>
 <div id="ref-Eurobarometer486" class="csl-entry">
@@ -1077,6 +1118,9 @@ Joint Research Centre
 </div>
 <div id="ref-OECD2019" class="csl-entry">
 OECD. (2019). <em>OECD SME and Entrepreneurship Outlook 2019</em>. OECD. <a href="https://doi.org/10.1787/34907e9c-en">https://doi.org/10.1787/34907e9c-en</a>
+</div>
+<div id="ref-Rennings2000" class="csl-entry">
+Rennings, K. (2000). Redefining innovation — eco-innovation research and the contribution from ecological economics. <em>Ecological Economics</em>, <em>32</em>(2), 319–332. <a href="https://doi.org/10.1016/S0921-8009(99)00112-3">https://doi.org/10.1016/S0921-8009(99)00112-3</a>
 </div>
 <div id="ref-RupeikaApoga2022" class="csl-entry">
 Rupeika-Apoga, R., &amp; Petrovska, K. (2022). Barriers to Sustainable Digital Transformation in Micro-, Small-, and Medium-Sized Enterprises. <em>Sustainability</em>, <em>14</em>(20), Article 20. <a href="https://doi.org/10.3390/su142013558">https://doi.org/10.3390/su142013558</a>
