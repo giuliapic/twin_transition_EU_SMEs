@@ -19,14 +19,14 @@ Data transformations and modelling steps are reported and documented in the scri
 
 # Dependencies:
 
-library(haven)
-library(tidyverse)
-library(dplyr)
-library(readr)
-library(tibble)
-library(mvProbit)
-library(forcats)
-library(magrittr)
+- library(haven) 
+- library(tidyverse)
+- library(dplyr)
+- library(readr)
+- library(tibble)
+- library(mvProbit)
+- library(forcats)
+- library(magrittr)
 
 
 
