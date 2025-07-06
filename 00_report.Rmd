@@ -1,15 +1,15 @@
 ---
 title: "Digitalisation and Environmental Practices in SMEs: Insights from Eurobarometer 486"
 
-<div style="margin-top: 30px;"></div>
-
 author: "Giulia Picardi"
+
 date: "07 july 2025"
 output: 
   bookdown::html_document2:
   toc: true
   number_sections: false
   link_citations: true
+  fig_captions: true 
 bibliography: multivariate.json 
 csl: apa.csl
 ---
@@ -20,6 +20,12 @@ body{ /* Normal  */
       font-size: 16px;
       font-family: Helvetica;
   }
+
+
+ .header-section-number {
+    display: none;
+  }
+
 
 </style>
 
@@ -171,6 +177,9 @@ The results, summarised in *Table 4.1*, suggest a differentiated yet coherent pa
 
 Cloud computing emerges as the most consistent predictor across all five environmental outcomes. It shows statistically significant and positive marginal effects on eco-innovation (AME = 0.024, p \< 0.05), recycling (0.078, p \< 0.001), resource reduction (0.084, p \< 0.001), energy saving (0.055, p \< 0.001), and sustainable product development (0.067, p \< 0.001). These results reinforce the view that cloud infrastructures not only support dematerialisation and operational flexibility but also facilitate scalable data storage and real-time processing capabilities that can enhance environmental monitoring and optimisation processes - as also noted in policy-oriented assessments such as the Joint Research Report of 2022 [@JRC2023] on digital transition and its environmental potential.
 
+Robotic automation also displays consistent and statistically significant associations across all environmental outcomes, with marginal effects ranging from 0.042 to 0.074 (all p < 0.05). These results align with Horbach’s framework [@Horbach2024], which highlights automation as a key enabler of resource-efficient and cleaner production processes.
+The results are broadly in line also with recent evidence by Almuaythir et al. [@Almuaythir2024], who highlight the potential of robotics to enhance sustainable development through improved productivity, innovation, and energy efficiency in several sectors.
+
 Big data analytics similarly demonstrates significant predictive power, particularly for eco-innovation (0.066, p \< 0.001), sustainable products (0.065, p \< 0.001), and resource reduction (0.038, p \< 0.05). The ability of big data systems to support predictive modelling, traceability, and lifecycle analysis likely contributes to these outcomes, providing firms with the analytical capacities necessary to improve efficiency and reduce waste, as discussed in empirical study such as Shajari and David [@ShajariDavid2025] and Angelopoulos [@Angelopoulos2020] which highlight the role of data infrastructures in enabling proactive environmental management and optimization of resources - especially in the industrial sector. 
 However, its association with energy saving is not statistically significant, which may reflect a limited integration of big data analytics into real-time energy management systems among SMEs. While previous studies have shown that big data can significantly contribute to energy efficiency through demand forecasting and process optimisation [@Angelopoulos2020], such applications may require complementary investments in IoT or automation that are less accessible to smaller firms. Moreover, given that the data analysed here refer to 2019, the apparent discrepancy might also be attributed to temporal gaps in the diffusion of such technologies.
 
@@ -230,6 +239,8 @@ In this sense, the value of the findings of this study lies less in the magnitud
 This study explored the associations between digital adoption, organisational characteristics, and environmental engagement among European SMEs, based on data collected in 2019. The results reveal a differentiated yet coherent pattern, in which certain digital technologies—most notably cloud computing—are consistently linked to a wide range of environmental practices, while others, such as big data analytics and AI, exhibit more selective associations. These findings contribute to the growing body of research on the twin transition, offering a micro-level perspective that complements the predominantly macro-oriented literature.
 
 Cloud computing emerges as the most robust and consistently significant predictor, showing positive associations across all five environmental outcomes. Its technical features—scalability, dematerialisation, real-time data access—likely enable firms to engage more easily in resource monitoring and operational efficiency, as also noted in policy-oriented assessments such as JRC (2022). Big data analytics shows strong associations with eco-innovation and sustainable product development, practices that typically require traceability, forecasting, and lifecycle analysis [@Angelopoulos2020; @ShajariDavid2025]. Its non-significance in the energy domain, despite expectations from existing literature, may reflect limited integration of data analytics with energy systems among SMEs, or a temporal lag in adoption at the time of data collection.
+
+Another consistent finding concerns robotic automation, whose positive association with all five environmental indicators suggests that this technology may serve as a structural backbone for ecological upgrades in production environments. These results are conceptually aligned with the perspective offered by Almuaythir et al.[@Almuaythir2024], who frame digital automation as enabler of sustainability transitions through improvements in resource efficiency, emissions reduction, and cleaner production processes. Their review identifies a set of mechanisms through which automation can facilitate responsible consumption and climate action, particularly in the manufacturing and industrial sectors. While our analysis focuses on SMEs rather than large-scale systems, the observed association between digital maturity and the adoption of environmental measures supports this logic. 
 
 AI and machine learning display a similar pattern: they are significantly associated with product-oriented and resource-saving behaviours, but not with recycling. While this is partly consistent with literature highlighting AI’s use in advanced optimisation and product design [@BurinskieneNalivaike2024; @ShajariDavid2025], it contrasts with more recent evidence showing successful AI applications in waste sorting and classification [@Fang2023]. This divergence may be due to sectoral differences, SME-specific barriers, or, crucially, the timing of the survey, which predates the acceleration in AI uptake in circular economy applications.
 
