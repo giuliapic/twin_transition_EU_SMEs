@@ -15,9 +15,7 @@ Flash Eurobarometer 486 (2020) – https://search.gesis.org/research_data/ZA7637
 - Main predictors: binary indicators of digital technology adoption  
 - Controls: firm size, sector (NACE), family ownership, financial capacity, skill shortages, urban/industrial location, country dummies  
 
---> in the 01_variable file, all variables are recoded as factor to strenghten the probit analysis model.
-All data transformations and modelling steps are documented in the scripts.
-
+Data transformations and modelling steps are reported and documented in the scripts.
 
 # Dependencies:
 
