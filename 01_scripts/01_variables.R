@@ -8,8 +8,8 @@ library(dplyr)
 # HERE there's the new dataset obtained at the end of this file - useful if you don't need to run all the code.
 #It contains the variables ready to be fitted in the model you find in the "02_analysis" file.  
 
-dat <- readRDS("03_output/dat.rds") 
-dat <- read.csv("03_output/dat.csv") 
+dat <- readRDS("02_output/dat.rds") 
+dat <- read.csv("02_output/dat.csv") 
 
 
 #---------------- Settings ---------------------------------------------------------------------------------------------------------------------------------
@@ -21,14 +21,21 @@ eb_digital_raw <- read_dta("C:/data_giulia/data/eurobarometer/data_486_digital.d
 #creating a copy of the dataset
 
 eb_digital <- eb_digital_raw
+
 #total number of observation: 16.365
 
 
+
 #N.B. 
-# variables imported with labelled numeric values (e.g., 0 = "Not mentioned", 1 = "Yes") 
-# do not contain actual NA values unless explicitly coded as such in the dataset. 
+
+# variables imported with labelled numeric values (e.g., 0 = "Not mentioned", 1 = "Yes") do not contain actual NA values unless explicitly coded as such in the dataset. 
 # Therefore, missing values are not expected and are not filtered out while recoding. 
 # This applies to all similar variables with labelled 0/1 structures across the dataset.
+
+# For other style of responses, NAs are methodologically and theoretically checked. If there are too much NA in the response, the variables are exluded from the model to preserve a reasonable number of observation. Theoretically relevant variables with a lot of NAs should be evaluated carefully. 
+# In this case, there were no reason to keep the variables with a huge percentages of NAs.
+# all the excluded variables due to the huge amount of NAs, are still reported in this file for transparency. 
+
 
 
 
@@ -78,6 +85,10 @@ eb_digital <- eb_digital %>%
   mutate(sust_prod = ifelse(q24_4 == 1, 1, 0))
 
 table(eb_digital$sust_prod)
+
+
+
+
 
 
 #--------------- INDEPENDENT VARIABLE (digital)-----------------------------
@@ -131,13 +142,17 @@ eb_digital <- eb_digital %>%
 
 table(eb_digital$smart_devices)
 
+
+
+
+
 #------------------ CONTROL VARIABLES - firm level ---------------------------
 
 
-#NB. As some of the answers are not binary like the previous ones, they can contain NAs, so checking for each variable the NAs is necessary.
+#NB. As some of the answers are not binary like the previous ones, they can contain NAs:checking for each variable the NAs is necessary.
 
 
-#Export --- NOT USED in the model, because of the NAs (15.632)
+#Export --- NOT USED in the model, because of the NAs (15.632 NAs)
 attr(eb_digital_raw$q12b, "labels")
 
 eb_digital <- eb_digital %>%
@@ -241,6 +256,7 @@ eb_digital <- eb_digital %>%
     sector_label = droplevels(sector_label)
   )
 
+
 # country 
 
 table(eb_digital$isocntry)
@@ -287,12 +303,13 @@ country_labels <- c(
   "US" = "United States"
 )
 
-#adapting the variable "country" to fit it in the model + recoding labels
-
+#adapting the variable "country" to fit it in the model
 eb_digital <- eb_digital %>%
   mutate(country_name = recode(isocntry, !!!country_labels)) %>%
   mutate(country_name = as.factor(country_name)) %>%
   mutate(country_name = droplevels(country_name))
+
+
 
 
 
@@ -318,12 +335,12 @@ dat <- dat %>%
 
 
 #Saving the new dataset in the output  
-saveRDS(dat, "03_output/dat.rds")
-write.csv(dat, "03_output/dat.csv")
+saveRDS(dat, "02_output/dat.rds")
+write.csv(dat, "02_output/dat.csv")
 
 #calling "dat" without the need to re-execute all the script: 
-dat <- readRDS("03_output/dat.rds")
-dat <- read.csv("03_output/dat.csv")
+dat <- readRDS("02_output/dat.rds")
+dat <- read.csv("02_output/dat.csv")
 
 
 
