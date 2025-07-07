@@ -1,6 +1,6 @@
 # Twin Transition in European SMEs
 
-This repository contains all materials related to the final project for the course *Multivariate Analysis for Social Scientists* at the University of Milan. The analysis investigates the relationship between digitalisation and environmental practices among European SMEs, using data from the Flash Eurobarometer 486 (2020).
+This repository contains all materials related to the final project for the course *Multivariate analysis for social scientists* at Università degli Studi di Milano. The analysis investigates the relationship between digitalisation and environmental practices among European SMEs, using data from the Flash Eurobarometer 486 (2020).
 
 
 # Data source:  
