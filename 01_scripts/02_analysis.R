@@ -16,18 +16,18 @@ library(magrittr)
 
 
 #descriptive statistics
-table_digital <- read_csv("03_output/table_digital.csv")
-table_green   <- read_csv("03_output/table_green.csv")
-table_controls <- read_csv("03_output/table_controls.csv")
+table_digital <- read_csv("02_output/table_digital.csv")
+table_green   <- read_csv("02_output/table_green.csv")
+table_controls <- read_csv("02_output/table_controls.csv")
 
 #Probit model object
-fit_mvp <- readRDS("03_output/fit_mvp.rds") 
+fit_mvp <- readRDS("02_output/fit_mvp.rds") 
 
 #csv of the probit model
-appendix_probit <- read.csv("03_output/appendix_mvprobit_output.csv")
+appendix_probit <- read.csv("02_output/appendix_mvprobit_output.csv")
 
 #csv of the marginal effects (formatted to be knitted in rmd)
-table_ME_formatted <- read.csv("03_output/table_marginal_effects_formatted.csv")
+table_ME_formatted <- read.csv("02_output/table_marginal_effects_formatted.csv")
 
 
 
@@ -56,7 +56,7 @@ table_digital <- dat %>%
 
 table_digital
 
-write_csv(table_digital, "03_output/table_digital.csv")
+write_csv(table_digital, "02_output/table_digital.csv")
 
 
 #green variables 
@@ -78,7 +78,7 @@ table_green <- dat %>%
 
 table_green
 
-write_csv(table_green, "03_output/table_green.csv")
+write_csv(table_green, "02_output/table_green.csv")
 
 
 #control variables 
@@ -103,7 +103,7 @@ table_controls <- dat %>%
 
 table_controls
 
-write_csv(table_controls, "03_output/table_controls.csv")
+write_csv(table_controls, "02_output/table_controls.csv")
 
 
 #descriptive statistics of all the variables 
@@ -115,7 +115,7 @@ write_csv(table_controls, "03_output/table_controls.csv")
 #you find the final output of the model already saved, ready to be called from the "output" file in this project. 
 #I RECOMMEND to not run the model as it could take more than 4 hours with a good processor. 
 
-fit_mvp <- readRDS("03_output/fit_mvp.rds") 
+fit_mvp <- readRDS("02_output/fit_mvp.rds") 
 
 
 #fitting multivatiate probit model
@@ -137,8 +137,8 @@ fit_mvp_csv <- tidy(fit_mvp)
 write.csv(fit_mvp_csv, "appendix_mvprobit_output.csv", row.names = FALSE)
 
 #saving the RDS of the output 
-saveRDS(fit_mvp, "03_output/fit_mvp.rds")
-fit_mvp <- readRDS("03_output/fit_mvp.rds") 
+saveRDS(fit_mvp, "02_output/fit_mvp.rds")
+fit_mvp <- readRDS("02_output/fit_mvp.rds") 
 
 
 
@@ -163,11 +163,12 @@ marginal_effects_mvProbit <- function(fit, data) {
   
   results <- list()
   
-  for (eq in eq_ids) { # it extracts coefficients for this equation
+  #extracting coefficients for the equation:
+  for (eq in eq_ids) { 
     coef_names <- paste0("b_", eq, "_", 0:(length(var_names)-1))
     
     if (!all(coef_names %in% names(all_coefs))) {
-      warning(paste("Equazione Y", eq, "skipped per nomi non corrispondenti"))
+      warning(paste("Equation Y", eq, "skipped for non corresponding names"))
       next
     }
     
@@ -270,7 +271,7 @@ table_formatted <- tab_me_p %>%
 table_formatted
 
 # Saving output
-write.csv(table_formatted, "03_output/table_marginal_effects_formatted.csv", row.names = FALSE)
+write.csv(table_formatted, "02_output/table_marginal_effects_formatted.csv", row.names = FALSE)
 
 
 
